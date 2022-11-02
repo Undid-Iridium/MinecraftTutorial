@@ -1,6 +1,5 @@
 package net.undidiridium.tutorialmod.item;
 
-import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -16,10 +15,10 @@ public class ModItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, TutorialMod.MOD_ID);
 
     public static final RegistryObject<Item> CITRINE =
-            ITEMS.register("citrine", () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
+            ITEMS.register("citrine", () -> new Item(new Item.Properties().tab(ModCreativeModTab.TUTORIAL_TAB)));
 
     public static final RegistryObject<Item> RAW_CITRINE =
-            ITEMS.register("raw_citrine", () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
+            ITEMS.register("raw_citrine", () -> new Item(new Item.Properties().tab(ModCreativeModTab.TUTORIAL_TAB)));
 
     /**
      * Called in tutorial mod to register
