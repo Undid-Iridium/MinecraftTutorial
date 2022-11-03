@@ -6,6 +6,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.undidiridium.tutorialmod.TutorialMod;
+import net.undidiridium.tutorialmod.item.custom.DowsingRodItem;
 
 public class ModItems {
     /**
@@ -19,6 +20,9 @@ public class ModItems {
 
     public static final RegistryObject<Item> RAW_CITRINE =
             ITEMS.register("raw_citrine", () -> new Item(new Item.Properties().tab(ModCreativeModTab.TUTORIAL_TAB)));
+
+    public static final RegistryObject<Item> DOWSING_ROD =
+            ITEMS.register("dowsing_rod", () -> new DowsingRodItem(new Item.Properties().tab(ModCreativeModTab.TUTORIAL_TAB).durability(16)));
 
     /**
      * Called in tutorial mod to register
