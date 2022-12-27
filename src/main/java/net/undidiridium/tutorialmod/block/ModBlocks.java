@@ -13,6 +13,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.undidiridium.tutorialmod.TutorialMod;
+import net.undidiridium.tutorialmod.block.custom.SpeedyBlock;
 import net.undidiridium.tutorialmod.item.ModCreativeModTab;
 import net.undidiridium.tutorialmod.item.ModItems;
 
@@ -38,6 +39,9 @@ public class ModBlocks {
 
     public static final RegistryObject<Block> NETHERRACK_CITRINE_ORE = registerBlock("netherrack_citrine_ore",
             () -> new Block(BlockBehaviour.Properties.of(Material.STONE).strength(5f).requiresCorrectToolForDrops().jumpFactor(5)), ModCreativeModTab.TUTORIAL_TAB);
+
+    public static final RegistryObject<Block> SPEEDY_BLOCK = registerBlock("speedy_block",
+            () -> new SpeedyBlock(BlockBehaviour.Properties.of(Material.STONE).strength(5f).requiresCorrectToolForDrops().jumpFactor(4)), ModCreativeModTab.TUTORIAL_TAB);
 
 
     /**

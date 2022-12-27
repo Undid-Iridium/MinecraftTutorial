@@ -9,5 +9,7 @@
   "block.tutorialmod.endstone_citrine_ore": "Endstone Citrine Ore",
   "block.tutorialmod.netherrack_citrine_ore": "Netherrack Citrine Ore",
   "itemGroup.tutorialtab": "Tutorial Mod",
-  "item.tutorialmod.dowsing_rod.no_valuables": "Nothing valuable found!"
+  "item.tutorialmod.dowsing_rod.no_valuables": "Nothing valuable found!",
+  "block.tutorialmod.speedy_block": "Speedy Block",
+  "block.tutorialmod.cucumber": "Cucumber"
 }
