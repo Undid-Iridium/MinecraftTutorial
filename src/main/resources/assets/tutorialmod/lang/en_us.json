@@ -11,5 +11,14 @@
   "itemGroup.tutorialtab": "Tutorial Mod",
   "item.tutorialmod.dowsing_rod.no_valuables": "Nothing valuable found!",
   "block.tutorialmod.speedy_block": "Speedy Block",
-  "block.tutorialmod.cucumber": "Cucumber"
+  "item.tutorialmod.cucumber": "Cucumber",
+  "item.tutorialmod.coal_coke": "Coal Coke",
+  "tooltip.tutorialmod.dowsing_rod.tooltip.shift": "Right click to find valuables",
+  "tooltip.tutorialmod.dowsing_rod.tooltip": "Press §eSHIFT§r for more Information!",
+  "tooltip.tutorialmod.block.speedy_block": "I am speed~~",
+  "block.tutorialmod.citrine_slab": "Citrine Slab",
+  "block.tutorialmod.citrine_stairs": "Citrine Stairs",
+  "block.tutorialmod.citrine_fence": "Citrine Fence",
+  "block.tutorialmod.citrine_wall": "Citrine Wall",
+  "block.tutorialmod.citrine_fence_gate": "Citrine Fence Gate"
 }

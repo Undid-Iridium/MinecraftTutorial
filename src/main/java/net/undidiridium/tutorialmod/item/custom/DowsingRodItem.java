@@ -1,14 +1,23 @@
 package net.undidiridium.tutorialmod.item.custom;
 
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
+import net.undidiridium.tutorialmod.util.ModTags;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 public class DowsingRodItem extends Item {
     public DowsingRodItem(final Properties pProperties) {
@@ -20,9 +29,21 @@ public class DowsingRodItem extends Item {
                 "(" + blockPos.getX() + ", " + blockPos.getY() + "," + blockPos.getZ() + ")"), player.getUUID());
     }
 
-    private static boolean isValuableBlock(final Block block) {
-        return block == Blocks.COAL_ORE || block == Blocks.COPPER_ORE
-                || block == Blocks.DIAMOND_ORE || block == Blocks.IRON_ORE;
+//    private static boolean isValuableBlock(final Block block) {
+//        return Registry.BLOCK.getHolderOrThrow(Registry.BLOCK.getResourceKey(block).get()).is(ModTags.Blocks.DOWSING_ROD_VALUABLES);
+//    }
+
+    private static boolean isValuableBlock(final BlockState state) {
+        return state.is(ModTags.Blocks.DOWSING_ROD_VALUABLES);
+    }
+
+    @Override
+    public void appendHoverText(final ItemStack pStack, @Nullable final Level pLevel, final List<Component> pTooltipComponents, final TooltipFlag pIsAdvanced) {
+        if (Screen.hasShiftDown()) {
+            pTooltipComponents.add(new TranslatableComponent("tooltip.tutorialmod.dowsing_rod.tooltip.shift"));
+        } else {
+            pTooltipComponents.add(new TranslatableComponent("tooltip.tutorialmod.dowsing_rod.tooltip"));
+        }
     }
 
     @Override
@@ -35,10 +56,10 @@ public class DowsingRodItem extends Item {
 
             for (int pos = 0; pos <= positionClicked.getY() + 64; pos++) {
                 //Adding to below, which is asking, y-(value)
-                final Block blockBelow = pContext.getLevel().getBlockState(positionClicked.below(pos)).getBlock();
+                final BlockState blockBelow = pContext.getLevel().getBlockState(positionClicked.below(pos));
 
-                if (isValuableBlock(blockBelow)) {
-                    outputValuableCoordinates(positionClicked.below(pos), player, blockBelow);
+                if (DowsingRodItem.isValuableBlock(blockBelow)) {
+                    outputValuableCoordinates(positionClicked.below(pos), player, blockBelow.getBlock());
                     foundBlock = true;
                     break;
                 }

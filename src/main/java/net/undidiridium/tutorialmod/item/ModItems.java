@@ -6,6 +6,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.undidiridium.tutorialmod.TutorialMod;
+import net.undidiridium.tutorialmod.item.custom.CoalCokeItem;
 import net.undidiridium.tutorialmod.item.custom.DowsingRodItem;
 
 public class ModItems {
@@ -26,6 +27,9 @@ public class ModItems {
 
     public static final RegistryObject<Item> CUCUMBER =
             ITEMS.register("cucumber", () -> new Item(new Item.Properties().tab(ModCreativeModTab.TUTORIAL_TAB).food(ModFoods.CUCUMBER)));
+
+    public static final RegistryObject<Item> COAL_COKE =
+            ITEMS.register("coal_coke", () -> new CoalCokeItem(new Item.Properties().tab(ModCreativeModTab.TUTORIAL_TAB)));
 
     /**
      * Called in tutorial mod to register
