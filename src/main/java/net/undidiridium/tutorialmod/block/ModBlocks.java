@@ -54,6 +54,18 @@ public class ModBlocks {
     public static final RegistryObject<Block> CITRINE_WALL = registerBlock("citrine_wall",
             () -> new WallBlock(BlockBehaviour.Properties.of(Material.METAL).strength(5f).requiresCorrectToolForDrops().sound(SoundType.AMETHYST)), ModCreativeModTab.TUTORIAL_TAB);
 
+    public static final RegistryObject<Block> CITRINE_BUTTON = registerBlock("citrine_button",
+            () -> new StoneButtonBlock(BlockBehaviour.Properties.of(Material.METAL).strength(5f).requiresCorrectToolForDrops().noCollission().sound(SoundType.WET_GRASS)), ModCreativeModTab.TUTORIAL_TAB);
+
+    public static final RegistryObject<Block> CITRINE_PRESSURE_PLATE = registerBlock("citrine_pressure_plate",
+            () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, BlockBehaviour.Properties.of(Material.METAL).strength(5f).requiresCorrectToolForDrops().sound(SoundType.BAMBOO)), ModCreativeModTab.TUTORIAL_TAB);
+
+    public static final RegistryObject<Block> EBONY_DOOR = registerBlock("ebony_door",
+            () -> new DoorBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(5f).requiresCorrectToolForDrops().noOcclusion().sound(SoundType.SNOW)), ModCreativeModTab.TUTORIAL_TAB);
+
+    public static final RegistryObject<Block> EBONY_TRAP_DOOR = registerBlock("ebony_trapdoor",
+            () -> new TrapDoorBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(5f).requiresCorrectToolForDrops().noOcclusion().sound(SoundType.LARGE_AMETHYST_BUD)), ModCreativeModTab.TUTORIAL_TAB);
+
 
     /**
      * Item associated with a block - Registers a block, with a new block item

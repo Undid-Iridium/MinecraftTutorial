@@ -1,6 +1,6 @@
 package net.undidiridium.tutorialmod.item;
 
-import net.minecraft.world.item.Item;
+import net.minecraft.world.item.*;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -30,6 +30,17 @@ public class ModItems {
 
     public static final RegistryObject<Item> COAL_COKE =
             ITEMS.register("coal_coke", () -> new CoalCokeItem(new Item.Properties().tab(ModCreativeModTab.TUTORIAL_TAB)));
+
+    public static final RegistryObject<Item> CITRINE_SWORD =
+            ITEMS.register("citrine_sword", () -> new SwordItem(ModTiers.CITRINE, 2, 3f, new Item.Properties().tab(ModCreativeModTab.TUTORIAL_TAB)));
+    public static final RegistryObject<Item> CITRINE_PICKAXE =
+            ITEMS.register("citrine_pickaxe", () -> new PickaxeItem(ModTiers.CITRINE, 1, 1f, new Item.Properties().tab(ModCreativeModTab.TUTORIAL_TAB)));
+    public static final RegistryObject<Item> CITRINE_SHOVEL =
+            ITEMS.register("citrine_shovel", () -> new ShovelItem(ModTiers.CITRINE, 0, 1f, new Item.Properties().tab(ModCreativeModTab.TUTORIAL_TAB)));
+    public static final RegistryObject<Item> CITRINE_AXE =
+            ITEMS.register("citrine_axe", () -> new AxeItem(ModTiers.CITRINE, 4, 0f, new Item.Properties().tab(ModCreativeModTab.TUTORIAL_TAB)));
+    public static final RegistryObject<Item> CITRINE_HOE =
+            ITEMS.register("citrine_hoe", () -> new HoeItem(ModTiers.CITRINE, 0, 0f, new Item.Properties().tab(ModCreativeModTab.TUTORIAL_TAB)));
 
     /**
      * Called in tutorial mod to register

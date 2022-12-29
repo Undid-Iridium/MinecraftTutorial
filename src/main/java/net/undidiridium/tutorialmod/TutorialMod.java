@@ -21,9 +21,6 @@ public class TutorialMod {
     public TutorialMod() {
         // Register the setup method for modloading
         final IEventBus event_bus = FMLJavaModLoadingContext.get().getModEventBus();
-        ModItems.register(event_bus);
-        ModBlocks.register(event_bus);
-        event_bus.addListener(TutorialMod::setup);
         // Register the enqueueIMC method for modloading
 //        event_bus.addListener(this::enqueueIMC);
 //        // Register the processIMC method for modloading
@@ -36,6 +33,12 @@ public class TutorialMod {
             So: 16x16, 32x32, 48x48, etc
          */
 
+        ModItems.register(event_bus);
+        ModBlocks.register(event_bus);
+        event_bus.addListener(TutorialMod::setup);
+        //event_bus.addListener(this::clientSetup); Incorrect, do not do this due to this class being called for server/client
+
+
         MinecraftForge.EVENT_BUS.register(this);
     }
 
@@ -44,6 +47,7 @@ public class TutorialMod {
         LOGGER.info("HELLO FROM PREINIT");
         LOGGER.info("DIRT BLOCK >> {}", Blocks.DIRT.getRegistryName());
     }
+
 
 //    private void enqueueIMC(final InterModEnqueueEvent event)
 //    {

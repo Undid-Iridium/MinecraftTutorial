@@ -20,5 +20,14 @@
   "block.tutorialmod.citrine_stairs": "Citrine Stairs",
   "block.tutorialmod.citrine_fence": "Citrine Fence",
   "block.tutorialmod.citrine_wall": "Citrine Wall",
-  "block.tutorialmod.citrine_fence_gate": "Citrine Fence Gate"
+  "block.tutorialmod.citrine_fence_gate": "Citrine Fence Gate",
+  "block.tutorialmod.citrine_button": "Citrine Button",
+  "block.tutorialmod.citrine_pressure_plate": "Citrine Pressure Plate",
+  "block.tutorialmod.ebony_door": "Ebony Door",
+  "block.tutorialmod.ebony_trapdoor": "Ebony Trapdoor",
+  "item.tutorialmod.citrine_pickaxe": "Citrine Pickaxe",
+  "item.tutorialmod.citrine_axe": "Citrine Axe",
+  "item.tutorialmod.citrine_shovel": "Citrine Shovel",
+  "item.tutorialmod.citrine_hoe": "Citrine Hoe",
+  "item.tutorialmod.citrine_sword": "Citrine Sword"
 }
