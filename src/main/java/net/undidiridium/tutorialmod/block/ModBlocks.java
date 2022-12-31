@@ -2,6 +2,7 @@ package net.undidiridium.tutorialmod.block;
 
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
@@ -66,6 +67,13 @@ public class ModBlocks {
     public static final RegistryObject<Block> EBONY_TRAP_DOOR = registerBlock("ebony_trapdoor",
             () -> new TrapDoorBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(5f).requiresCorrectToolForDrops().noOcclusion().sound(SoundType.LARGE_AMETHYST_BUD)), ModCreativeModTab.TUTORIAL_TAB);
 
+    public static final RegistryObject<Block> PINK_ROSE = registerBlock("pink_rose",
+            () -> new FlowerBlock(MobEffects.LEVITATION, 8, BlockBehaviour.Properties.copy(Blocks.DANDELION).strength(5f).noOcclusion().sound(SoundType.FLOWERING_AZALEA)), ModCreativeModTab.TUTORIAL_TAB);
+
+    public static final RegistryObject<Block> POTTED_PINK_ROSE = registerBlockWithoutBlockItem("potted_pink_rose",
+            () -> new FlowerPotBlock(null, ModBlocks.PINK_ROSE,
+                    BlockBehaviour.Properties.copy(Blocks.DANDELION).strength(5f).noOcclusion().sound(SoundType.FUNGUS)));
+
 
     /**
      * Item associated with a block - Registers a block, with a new block item
@@ -106,7 +114,7 @@ public class ModBlocks {
      */
     public static <T extends Block> RegistryObject<Item> registerBlockItem(final String name, final RegistryObject<T> block, final CreativeModeTab tab,
                                                                            final String tooltipKey) {
-        return ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties().tab(tab).stacksTo(32)) {
+        return ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties().tab(tab).stacksTo(50)) {
             @Override
             public void appendHoverText(final ItemStack pStack, @Nullable final Level pLevel, final List<Component> pTooltip, final TooltipFlag pFlag) {
                 pTooltip.add(new TranslatableComponent(tooltipKey));
@@ -127,6 +135,18 @@ public class ModBlocks {
         final RegistryObject<T> toReturn = BLOCKS.register(name, block);
         registerBlockItem(name, toReturn, tab, "This has no defined label!");
         return toReturn;
+    }
+
+    /**
+     * FYI Supplier is a delegate, you can save a function to it, and then do .get() to get the result. Registering the block itself.
+     *
+     * @param name
+     * @param block
+     * @param <T>
+     * @return
+     */
+    public static <T extends Block> RegistryObject<T> registerBlockWithoutBlockItem(final String name, final Supplier<T> block) {
+        return BLOCKS.register(name, block);
     }
 
 

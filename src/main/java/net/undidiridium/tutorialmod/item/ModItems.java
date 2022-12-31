@@ -1,5 +1,6 @@
 package net.undidiridium.tutorialmod.item;
 
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.*;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -8,6 +9,8 @@ import net.minecraftforge.registries.RegistryObject;
 import net.undidiridium.tutorialmod.TutorialMod;
 import net.undidiridium.tutorialmod.item.custom.CoalCokeItem;
 import net.undidiridium.tutorialmod.item.custom.DowsingRodItem;
+import net.undidiridium.tutorialmod.item.custom.LevitationSwordItem;
+import net.undidiridium.tutorialmod.item.custom.ModArmorItem;
 
 public class ModItems {
     /**
@@ -32,7 +35,7 @@ public class ModItems {
             ITEMS.register("coal_coke", () -> new CoalCokeItem(new Item.Properties().tab(ModCreativeModTab.TUTORIAL_TAB)));
 
     public static final RegistryObject<Item> CITRINE_SWORD =
-            ITEMS.register("citrine_sword", () -> new SwordItem(ModTiers.CITRINE, 2, 3f, new Item.Properties().tab(ModCreativeModTab.TUTORIAL_TAB)));
+            ITEMS.register("citrine_sword", () -> new LevitationSwordItem(ModTiers.CITRINE, 2, 3f, new Item.Properties().tab(ModCreativeModTab.TUTORIAL_TAB)));
     public static final RegistryObject<Item> CITRINE_PICKAXE =
             ITEMS.register("citrine_pickaxe", () -> new PickaxeItem(ModTiers.CITRINE, 1, 1f, new Item.Properties().tab(ModCreativeModTab.TUTORIAL_TAB)));
     public static final RegistryObject<Item> CITRINE_SHOVEL =
@@ -41,6 +44,17 @@ public class ModItems {
             ITEMS.register("citrine_axe", () -> new AxeItem(ModTiers.CITRINE, 4, 0f, new Item.Properties().tab(ModCreativeModTab.TUTORIAL_TAB)));
     public static final RegistryObject<Item> CITRINE_HOE =
             ITEMS.register("citrine_hoe", () -> new HoeItem(ModTiers.CITRINE, 0, 0f, new Item.Properties().tab(ModCreativeModTab.TUTORIAL_TAB)));
+
+    //Apparently for armor effects you don't need to change all to ModArmorItem, only one, weird.
+    public static final RegistryObject<Item> CITRINE_HELMET =
+            ITEMS.register("citrine_helmet", () -> new ModArmorItem(ModArmorMaterials.CITRINE, EquipmentSlot.HEAD, new Item.Properties().tab(ModCreativeModTab.TUTORIAL_TAB)));
+
+    public static final RegistryObject<Item> CITRINE_CHESTPLATE =
+            ITEMS.register("citrine_chestplate", () -> new ArmorItem(ModArmorMaterials.CITRINE, EquipmentSlot.CHEST, new Item.Properties().tab(ModCreativeModTab.TUTORIAL_TAB)));
+    public static final RegistryObject<Item> CITRINE_LEGGING =
+            ITEMS.register("citrine_leggings", () -> new ArmorItem(ModArmorMaterials.CITRINE, EquipmentSlot.LEGS, new Item.Properties().tab(ModCreativeModTab.TUTORIAL_TAB)));
+    public static final RegistryObject<Item> CITRINE_BOOTS =
+            ITEMS.register("citrine_boots", () -> new ArmorItem(ModArmorMaterials.CITRINE, EquipmentSlot.FEET, new Item.Properties().tab(ModCreativeModTab.TUTORIAL_TAB)));
 
     /**
      * Called in tutorial mod to register

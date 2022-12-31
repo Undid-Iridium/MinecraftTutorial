@@ -29,5 +29,13 @@
   "item.tutorialmod.citrine_axe": "Citrine Axe",
   "item.tutorialmod.citrine_shovel": "Citrine Shovel",
   "item.tutorialmod.citrine_hoe": "Citrine Hoe",
-  "item.tutorialmod.citrine_sword": "Citrine Sword"
+  "item.tutorialmod.citrine_sword": "Citrine Sword",
+  "tooltip.tutorialmod.levitating_sword.tooltip.shift": "Causes enemies to float!",
+  "tooltip.tutorialmod.generic_message.tooltip": "Press §eSHIFT§r for more Information!",
+  "item.tutorialmod.citrine_helmet": "Citrine Helmet",
+  "item.tutorialmod.citrine_chestplate": "Citrine Chestplate",
+  "item.tutorialmod.citrine_leggings": "Citrine Leggings",
+  "item.tutorialmod.citrine_boots": "Citrine Boots",
+  "block.tutorialmod.pink_rose": "Pink Rose",
+  "block.tutorialmod.potted_pink_rose": "Potted Pink Rose"
 }
