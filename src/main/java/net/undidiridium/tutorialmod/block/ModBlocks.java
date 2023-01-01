@@ -68,11 +68,16 @@ public class ModBlocks {
             () -> new TrapDoorBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(5f).requiresCorrectToolForDrops().noOcclusion().sound(SoundType.LARGE_AMETHYST_BUD)), ModCreativeModTab.TUTORIAL_TAB);
 
     public static final RegistryObject<Block> PINK_ROSE = registerBlock("pink_rose",
-            () -> new FlowerBlock(MobEffects.LEVITATION, 8, BlockBehaviour.Properties.copy(Blocks.DANDELION).strength(5f).noOcclusion().sound(SoundType.FLOWERING_AZALEA)), ModCreativeModTab.TUTORIAL_TAB);
+            () -> new FlowerBlock(MobEffects.LEVITATION, 8,
+                    BlockBehaviour.Properties.copy(Blocks.DANDELION).strength(5f).noOcclusion().sound(SoundType.FLOWERING_AZALEA)), ModCreativeModTab.TUTORIAL_TAB);
 
     public static final RegistryObject<Block> POTTED_PINK_ROSE = registerBlockWithoutBlockItem("potted_pink_rose",
             () -> new FlowerPotBlock(null, ModBlocks.PINK_ROSE,
-                    BlockBehaviour.Properties.copy(Blocks.DANDELION).strength(5f).noOcclusion().sound(SoundType.FUNGUS)));
+                    BlockBehaviour.Properties.copy(Blocks.POTTED_DANDELION).strength(5f).noOcclusion().sound(SoundType.FUNGUS)));
+
+    public static final RegistryObject<Block> WINTER_WINDOW = registerBlock("winter_window",
+            () -> new GlassBlock(
+                    BlockBehaviour.Properties.copy(Blocks.GLASS).strength(5f).noOcclusion()), ModCreativeModTab.TUTORIAL_TAB);
 
 
     /**

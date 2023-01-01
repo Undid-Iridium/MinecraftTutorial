@@ -56,6 +56,9 @@ public class ModItems {
     public static final RegistryObject<Item> CITRINE_BOOTS =
             ITEMS.register("citrine_boots", () -> new ArmorItem(ModArmorMaterials.CITRINE, EquipmentSlot.FEET, new Item.Properties().tab(ModCreativeModTab.TUTORIAL_TAB)));
 
+    public static final RegistryObject<Item> MAGIC_DUST =
+            ITEMS.register("magic_dust", () -> new Item(new Item.Properties().tab(ModCreativeModTab.TUTORIAL_TAB)));
+
     /**
      * Called in tutorial mod to register
      *

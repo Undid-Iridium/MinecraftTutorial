@@ -10,6 +10,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.undidiridium.tutorialmod.block.ModBlocks;
 import net.undidiridium.tutorialmod.item.ModItems;
+import net.undidiridium.tutorialmod.painting.ModPaintings;
 import org.slf4j.Logger;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -36,6 +37,7 @@ public class TutorialMod {
 
         ModItems.register(event_bus);
         ModBlocks.register(event_bus);
+        ModPaintings.register(event_bus);
         event_bus.addListener(TutorialMod::setup);
         //event_bus.addListener(this::clientSetup); Incorrect, do not do this due to this class being called for server/client
 
