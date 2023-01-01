@@ -14,6 +14,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.undidiridium.tutorialmod.TutorialMod;
+import net.undidiridium.tutorialmod.block.custom.CitrineLampBlock;
 import net.undidiridium.tutorialmod.block.custom.SpeedyBlock;
 import net.undidiridium.tutorialmod.item.ModCreativeModTab;
 import net.undidiridium.tutorialmod.item.ModItems;
@@ -78,6 +79,11 @@ public class ModBlocks {
     public static final RegistryObject<Block> WINTER_WINDOW = registerBlock("winter_window",
             () -> new GlassBlock(
                     BlockBehaviour.Properties.copy(Blocks.GLASS).strength(5f).noOcclusion()), ModCreativeModTab.TUTORIAL_TAB);
+
+    public static final RegistryObject<Block> CITRINE_LAMP = registerBlock("citrine_lamp",
+            () -> new CitrineLampBlock(
+                    BlockBehaviour.Properties.of(Material.METAL).strength(2f).requiresCorrectToolForDrops().lightLevel((state) ->
+                            state.getValue(CitrineLampBlock.CLICKED) ? 15 : 0)), ModCreativeModTab.TUTORIAL_TAB);
 
 
     /**
