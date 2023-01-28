@@ -8,6 +8,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.undidiridium.tutorialmod.TutorialMod;
 import net.undidiridium.tutorialmod.block.ModBlocks;
+import net.undidiridium.tutorialmod.util.ModItemProperties;
 
 @Mod.EventBusSubscriber(modid = TutorialMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class ModEventClientBusEvents {
@@ -22,5 +23,7 @@ public class ModEventClientBusEvents {
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.POTTED_PINK_ROSE.get(), RenderType.cutout());
 
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.WINTER_WINDOW.get(), RenderType.translucent());
+
+        ModItemProperties.addCustomItemProperties();
     }
 }

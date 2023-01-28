@@ -16,7 +16,7 @@ import net.minecraftforge.registries.RegistryObject;
 import net.undidiridium.tutorialmod.TutorialMod;
 import net.undidiridium.tutorialmod.block.custom.CitrineLampBlock;
 import net.undidiridium.tutorialmod.block.custom.SpeedyBlock;
-import net.undidiridium.tutorialmod.item.ModCreativeModTab;
+import net.undidiridium.tutorialmod.item.ModCreativeModeTab;
 import net.undidiridium.tutorialmod.item.ModItems;
 import org.jetbrains.annotations.Nullable;
 
@@ -27,50 +27,50 @@ public class ModBlocks {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, TutorialMod.MOD_ID);
 
     public static final RegistryObject<Block> CITRINE_BLOCK = registerBlock("citrine_block",
-            () -> new Block(BlockBehaviour.Properties.of(Material.METAL).strength(9f).requiresCorrectToolForDrops()), ModCreativeModTab.TUTORIAL_TAB);
+            () -> new Block(BlockBehaviour.Properties.of(Material.METAL).strength(9f).requiresCorrectToolForDrops()), ModCreativeModeTab.TUTORIAL_TAB);
     public static final RegistryObject<Block> CITRINE_STAIRS = registerBlock("citrine_stairs",
             () -> new StairBlock(() -> ModBlocks.CITRINE_BLOCK.get().defaultBlockState(),
                     BlockBehaviour.Properties.of(Material.STONE).strength(5f)
-                            .requiresCorrectToolForDrops().sound(SoundType.AMETHYST)), ModCreativeModTab.TUTORIAL_TAB);
+                            .requiresCorrectToolForDrops().sound(SoundType.AMETHYST)), ModCreativeModeTab.TUTORIAL_TAB);
     public static final RegistryObject<Block> RAW_CITRINE_BLOCK = registerBlock("raw_citrine_block",
-            () -> new Block(BlockBehaviour.Properties.of(Material.METAL).strength(7f).requiresCorrectToolForDrops()), ModCreativeModTab.TUTORIAL_TAB);
+            () -> new Block(BlockBehaviour.Properties.of(Material.METAL).strength(7f).requiresCorrectToolForDrops()), ModCreativeModeTab.TUTORIAL_TAB);
     public static final RegistryObject<Block> CITRINE_ORE = registerBlock("citrine_ore",
-            () -> new Block(BlockBehaviour.Properties.of(Material.STONE).strength(5f).requiresCorrectToolForDrops()), ModCreativeModTab.TUTORIAL_TAB);
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE).strength(5f).requiresCorrectToolForDrops()), ModCreativeModeTab.TUTORIAL_TAB);
     public static final RegistryObject<Block> DEEPSLATE_CITRINE_ORE = registerBlock("deepslate_citrine_ore",
-            () -> new Block(BlockBehaviour.Properties.of(Material.STONE).strength(7f).requiresCorrectToolForDrops().destroyTime(5).color(MaterialColor.COLOR_BLUE)), ModCreativeModTab.TUTORIAL_TAB);
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE).strength(7f).requiresCorrectToolForDrops().destroyTime(5).color(MaterialColor.COLOR_BLUE)), ModCreativeModeTab.TUTORIAL_TAB);
     public static final RegistryObject<Block> ENDSTONE_CITRINE_ORE = registerBlock("endstone_citrine_ore",
-            () -> new Block(BlockBehaviour.Properties.of(Material.STONE).strength(5f).requiresCorrectToolForDrops().sound(SoundType.AMETHYST)), ModCreativeModTab.TUTORIAL_TAB);
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE).strength(5f).requiresCorrectToolForDrops().sound(SoundType.AMETHYST)), ModCreativeModeTab.TUTORIAL_TAB);
     public static final RegistryObject<Block> NETHERRACK_CITRINE_ORE = registerBlock("netherrack_citrine_ore",
-            () -> new Block(BlockBehaviour.Properties.of(Material.STONE).strength(5f).requiresCorrectToolForDrops().jumpFactor(5)), ModCreativeModTab.TUTORIAL_TAB);
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE).strength(5f).requiresCorrectToolForDrops().jumpFactor(5)), ModCreativeModeTab.TUTORIAL_TAB);
     public static final RegistryObject<Block> SPEEDY_BLOCK = registerBlock("speedy_block",
-            () -> new SpeedyBlock(BlockBehaviour.Properties.of(Material.STONE).strength(5f).requiresCorrectToolForDrops().jumpFactor(4)), ModCreativeModTab.TUTORIAL_TAB, "tooltip.tutorialmod.block.speedy_block");
+            () -> new SpeedyBlock(BlockBehaviour.Properties.of(Material.STONE).strength(5f).requiresCorrectToolForDrops().jumpFactor(4)), ModCreativeModeTab.TUTORIAL_TAB, "tooltip.tutorialmod.block.speedy_block");
     public static final RegistryObject<Block> CITRINE_SLAB = registerBlock("citrine_slab",
-            () -> new SlabBlock(BlockBehaviour.Properties.of(Material.METAL).strength(5f).requiresCorrectToolForDrops().sound(SoundType.AMETHYST)), ModCreativeModTab.TUTORIAL_TAB);
+            () -> new SlabBlock(BlockBehaviour.Properties.of(Material.METAL).strength(5f).requiresCorrectToolForDrops().sound(SoundType.AMETHYST)), ModCreativeModeTab.TUTORIAL_TAB);
 
     public static final RegistryObject<Block> CITRINE_FENCE = registerBlock("citrine_fence",
-            () -> new FenceBlock(BlockBehaviour.Properties.of(Material.METAL).strength(5f).requiresCorrectToolForDrops().sound(SoundType.AMETHYST)), ModCreativeModTab.TUTORIAL_TAB);
+            () -> new FenceBlock(BlockBehaviour.Properties.of(Material.METAL).strength(5f).requiresCorrectToolForDrops().sound(SoundType.AMETHYST)), ModCreativeModeTab.TUTORIAL_TAB);
 
     public static final RegistryObject<Block> CITRINE_FENCE_GATE = registerBlock("citrine_fence_gate",
-            () -> new FenceGateBlock(BlockBehaviour.Properties.of(Material.METAL).strength(5f).requiresCorrectToolForDrops().sound(SoundType.AMETHYST)), ModCreativeModTab.TUTORIAL_TAB);
+            () -> new FenceGateBlock(BlockBehaviour.Properties.of(Material.METAL).strength(5f).requiresCorrectToolForDrops().sound(SoundType.AMETHYST)), ModCreativeModeTab.TUTORIAL_TAB);
 
     public static final RegistryObject<Block> CITRINE_WALL = registerBlock("citrine_wall",
-            () -> new WallBlock(BlockBehaviour.Properties.of(Material.METAL).strength(5f).requiresCorrectToolForDrops().sound(SoundType.AMETHYST)), ModCreativeModTab.TUTORIAL_TAB);
+            () -> new WallBlock(BlockBehaviour.Properties.of(Material.METAL).strength(5f).requiresCorrectToolForDrops().sound(SoundType.AMETHYST)), ModCreativeModeTab.TUTORIAL_TAB);
 
     public static final RegistryObject<Block> CITRINE_BUTTON = registerBlock("citrine_button",
-            () -> new StoneButtonBlock(BlockBehaviour.Properties.of(Material.METAL).strength(5f).requiresCorrectToolForDrops().noCollission().sound(SoundType.WET_GRASS)), ModCreativeModTab.TUTORIAL_TAB);
+            () -> new StoneButtonBlock(BlockBehaviour.Properties.of(Material.METAL).strength(5f).requiresCorrectToolForDrops().noCollission().sound(SoundType.WET_GRASS)), ModCreativeModeTab.TUTORIAL_TAB);
 
     public static final RegistryObject<Block> CITRINE_PRESSURE_PLATE = registerBlock("citrine_pressure_plate",
-            () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, BlockBehaviour.Properties.of(Material.METAL).strength(5f).requiresCorrectToolForDrops().sound(SoundType.BAMBOO)), ModCreativeModTab.TUTORIAL_TAB);
+            () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, BlockBehaviour.Properties.of(Material.METAL).strength(5f).requiresCorrectToolForDrops().sound(SoundType.BAMBOO)), ModCreativeModeTab.TUTORIAL_TAB);
 
     public static final RegistryObject<Block> EBONY_DOOR = registerBlock("ebony_door",
-            () -> new DoorBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(5f).requiresCorrectToolForDrops().noOcclusion().sound(SoundType.SNOW)), ModCreativeModTab.TUTORIAL_TAB);
+            () -> new DoorBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(5f).requiresCorrectToolForDrops().noOcclusion().sound(SoundType.SNOW)), ModCreativeModeTab.TUTORIAL_TAB);
 
     public static final RegistryObject<Block> EBONY_TRAP_DOOR = registerBlock("ebony_trapdoor",
-            () -> new TrapDoorBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(5f).requiresCorrectToolForDrops().noOcclusion().sound(SoundType.LARGE_AMETHYST_BUD)), ModCreativeModTab.TUTORIAL_TAB);
+            () -> new TrapDoorBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(5f).requiresCorrectToolForDrops().noOcclusion().sound(SoundType.LARGE_AMETHYST_BUD)), ModCreativeModeTab.TUTORIAL_TAB);
 
     public static final RegistryObject<Block> PINK_ROSE = registerBlock("pink_rose",
             () -> new FlowerBlock(MobEffects.LEVITATION, 8,
-                    BlockBehaviour.Properties.copy(Blocks.DANDELION).strength(5f).noOcclusion().sound(SoundType.FLOWERING_AZALEA)), ModCreativeModTab.TUTORIAL_TAB);
+                    BlockBehaviour.Properties.copy(Blocks.DANDELION).strength(5f).noOcclusion().sound(SoundType.FLOWERING_AZALEA)), ModCreativeModeTab.TUTORIAL_TAB);
 
     public static final RegistryObject<Block> POTTED_PINK_ROSE = registerBlockWithoutBlockItem("potted_pink_rose",
             () -> new FlowerPotBlock(null, ModBlocks.PINK_ROSE,
@@ -78,12 +78,12 @@ public class ModBlocks {
 
     public static final RegistryObject<Block> WINTER_WINDOW = registerBlock("winter_window",
             () -> new GlassBlock(
-                    BlockBehaviour.Properties.copy(Blocks.GLASS).strength(5f).noOcclusion()), ModCreativeModTab.TUTORIAL_TAB);
+                    BlockBehaviour.Properties.copy(Blocks.GLASS).strength(5f).noOcclusion()), ModCreativeModeTab.TUTORIAL_TAB);
 
     public static final RegistryObject<Block> CITRINE_LAMP = registerBlock("citrine_lamp",
             () -> new CitrineLampBlock(
                     BlockBehaviour.Properties.of(Material.METAL).strength(2f).requiresCorrectToolForDrops().lightLevel((state) ->
-                            state.getValue(CitrineLampBlock.CLICKED) ? 15 : 0)), ModCreativeModTab.TUTORIAL_TAB);
+                            state.getValue(CitrineLampBlock.CLICKED) ? 15 : 0)), ModCreativeModeTab.TUTORIAL_TAB);
 
 
     /**

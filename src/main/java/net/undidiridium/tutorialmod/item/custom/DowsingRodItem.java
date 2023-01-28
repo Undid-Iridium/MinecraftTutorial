@@ -2,6 +2,7 @@ package net.undidiridium.tutorialmod.item.custom;
 
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
@@ -14,6 +15,8 @@ import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
+import net.undidiridium.tutorialmod.item.ModItems;
+import net.undidiridium.tutorialmod.util.InventoryUtil;
 import net.undidiridium.tutorialmod.util.ModTags;
 import org.jetbrains.annotations.Nullable;
 
@@ -35,6 +38,17 @@ public class DowsingRodItem extends Item {
 
     private static boolean isValuableBlock(final BlockState state) {
         return state.is(ModTags.Blocks.DOWSING_ROD_VALUABLES);
+    }
+
+    private static void addNbtToDataTablet(final Player player, final BlockPos pos, final Block blockBelow) {
+        final ItemStack dataTablet =
+                player.getInventory().getItem(InventoryUtil.getFirstInventoryIndex(player, ModItems.DATA_TABLET.get()));
+
+        final CompoundTag nbtData = new CompoundTag();
+        nbtData.putString("tutorialmod.last_ore", "Found " + blockBelow.asItem().getRegistryName().toString() + " at (" +
+                pos.getX() + ", " + pos.getY() + ", " + pos.getZ() + ")");
+
+        dataTablet.setTag(nbtData);
     }
 
     @Override
@@ -61,6 +75,10 @@ public class DowsingRodItem extends Item {
                 if (DowsingRodItem.isValuableBlock(blockBelow)) {
                     outputValuableCoordinates(positionClicked.below(pos), player, blockBelow.getBlock());
                     foundBlock = true;
+
+                    if (InventoryUtil.hasPlayerStackInInventory(player, ModItems.DATA_TABLET.get())) {
+                        addNbtToDataTablet(player, positionClicked.below(pos), blockBelow.getBlock());
+                    }
                     break;
                 }
             }
