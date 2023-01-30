@@ -2,6 +2,7 @@
   "item.tutorialmod.citrine": "Citrine",
   "item.tutorialmod.raw_citrine": "Raw Citrine",
   "item.tutorialmod.dowsing_rod": "Dowsing rod",
+  "item.tutorialmod.dowsing_rod_adv": "Dowsing Rod Advanced",
   "block.tutorialmod.citrine_block": "Citrine Block",
   "block.tutorialmod.raw_citrine_block": "Raw Citrine Block",
   "block.tutorialmod.citrine_ore": "Citrine Ore",
@@ -42,5 +43,8 @@
   "block.tutorialmod.winter_window": "Winter Window Winteryy",
   "block.tutorialmod.citrine_lamp": "Citrine Lamp",
   "item.tutorialmod.data_tablet": "Data Tablet",
-  "item.tutorialmod.kaupenbow": "Kaupenbow"
+  "item.tutorialmod.kaupenbow": "Kaupenbow",
+  "item.tutorialmod.cucumber_seeds": "Cucumber Seeds",
+  "block.tutorialmod.cucumber_plant": "Cucumber Plant",
+  "sounds.tutorialmod.dowsing_rod_found_ore": "Dowsing Rod Found Item Sound"
 }

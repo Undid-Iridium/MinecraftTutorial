@@ -15,9 +15,11 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.undidiridium.tutorialmod.TutorialMod;
 import net.undidiridium.tutorialmod.block.custom.CitrineLampBlock;
+import net.undidiridium.tutorialmod.block.custom.CucumberPlantBlock;
 import net.undidiridium.tutorialmod.block.custom.SpeedyBlock;
 import net.undidiridium.tutorialmod.item.ModCreativeModeTab;
 import net.undidiridium.tutorialmod.item.ModItems;
+import net.undidiridium.tutorialmod.sound.ModSounds;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -83,7 +85,11 @@ public class ModBlocks {
     public static final RegistryObject<Block> CITRINE_LAMP = registerBlock("citrine_lamp",
             () -> new CitrineLampBlock(
                     BlockBehaviour.Properties.of(Material.METAL).strength(2f).requiresCorrectToolForDrops().lightLevel((state) ->
-                            state.getValue(CitrineLampBlock.CLICKED) ? 15 : 0)), ModCreativeModeTab.TUTORIAL_TAB);
+                            state.getValue(CitrineLampBlock.CLICKED) ? 15 : 0).sound(ModSounds.CITRINE_LAMP_SOUNDS)), ModCreativeModeTab.TUTORIAL_TAB);
+
+    public static final RegistryObject<Block> CUCUMBER_PLANT = registerBlockWithoutBlockItem("cucumber_plant",
+            () -> new CucumberPlantBlock(
+                    BlockBehaviour.Properties.copy(Blocks.WHEAT).noOcclusion()));
 
 
     /**

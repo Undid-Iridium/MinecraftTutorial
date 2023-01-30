@@ -24,8 +24,8 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class DowsingRodItem extends Item {
-    public DowsingRodItem(final Properties pProperties) {
+public class DowsingRodItemAdvanced extends Item {
+    public DowsingRodItemAdvanced(final Properties pProperties) {
         super(pProperties);
     }
 
@@ -69,12 +69,11 @@ public class DowsingRodItem extends Item {
             final BlockPos positionClicked = pContext.getClickedPos();
             final Player player = pContext.getPlayer();
             boolean foundBlock = false;
-
             for (int pos = 0; pos <= positionClicked.getY() + 64; pos++) {
                 //Adding to below, which is asking, y-(value)
                 final BlockState blockBelow = pContext.getLevel().getBlockState(positionClicked.below(pos));
 
-                if (DowsingRodItem.isValuableBlock(blockBelow)) {
+                if (DowsingRodItemAdvanced.isValuableBlock(blockBelow)) {
                     outputValuableCoordinates(positionClicked.below(pos), player, blockBelow.getBlock());
                     foundBlock = true;
 
@@ -82,11 +81,12 @@ public class DowsingRodItem extends Item {
                         addNbtToDataTablet(player, positionClicked.below(pos), blockBelow.getBlock());
                     }
 
-                    pContext.getLevel().playSound(player, positionClicked, ModSounds.DOWSING_ROD_FOUND_ORE.get(),
-                            SoundSource.BLOCKS, 1f, 1f);
-                    break;
+//                    blockBelow.getBlock().
                 }
             }
+
+            pContext.getLevel().playSound(player, positionClicked, ModSounds.DOWSING_ROD_FOUND_ORE.get(),
+                    SoundSource.BLOCKS, 1f, 1f);
 
             if (!foundBlock) {
                 player.sendMessage(new TranslatableComponent("item.tutorialmod.dowsing_rod.no_valuables"),

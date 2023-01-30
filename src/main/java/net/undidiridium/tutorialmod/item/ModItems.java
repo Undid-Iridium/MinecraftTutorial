@@ -7,6 +7,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.undidiridium.tutorialmod.TutorialMod;
+import net.undidiridium.tutorialmod.block.ModBlocks;
 import net.undidiridium.tutorialmod.item.custom.*;
 
 public class ModItems {
@@ -24,6 +25,9 @@ public class ModItems {
 
     public static final RegistryObject<Item> DOWSING_ROD =
             ITEMS.register("dowsing_rod", () -> new DowsingRodItem(new Item.Properties().tab(ModCreativeModeTab.TUTORIAL_TAB).durability(16)));
+
+    public static final RegistryObject<Item> DOWSING_ROD_ADV =
+            ITEMS.register("dowsing_rod_adv", () -> new DowsingRodItemAdvanced(new Item.Properties().tab(ModCreativeModeTab.TUTORIAL_TAB).durability(16)));
 
     public static final RegistryObject<Item> CUCUMBER =
             ITEMS.register("cucumber", () -> new Item(new Item.Properties().tab(ModCreativeModeTab.TUTORIAL_TAB).food(ModFoods.CUCUMBER)));
@@ -60,6 +64,9 @@ public class ModItems {
             ITEMS.register("data_tablet", () -> new DataTabletItem(new Item.Properties().tab(ModCreativeModeTab.TUTORIAL_TAB).stacksTo(1)));
     public static final RegistryObject<Item> KAUPENBOW = ITEMS.register("kaupenbow",
             () -> new BowItem(new Item.Properties().tab(ModCreativeModeTab.TUTORIAL_TAB).stacksTo(1).durability(500)));
+
+    public static final RegistryObject<Item> CUCUMBER_SEEDS = ITEMS.register("cucumber_seeds",
+            () -> new ItemNameBlockItem(ModBlocks.CUCUMBER_PLANT.get(), new Item.Properties().tab(ModCreativeModeTab.TUTORIAL_TAB)));
 
     /**
      * Called in tutorial mod to register
