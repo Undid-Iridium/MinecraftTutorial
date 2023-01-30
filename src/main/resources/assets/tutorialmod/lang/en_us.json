@@ -46,5 +46,7 @@
   "item.tutorialmod.kaupenbow": "Kaupenbow",
   "item.tutorialmod.cucumber_seeds": "Cucumber Seeds",
   "block.tutorialmod.cucumber_plant": "Cucumber Plant",
-  "sounds.tutorialmod.dowsing_rod_found_ore": "Dowsing Rod Found Item Sound"
+  "sounds.tutorialmod.dowsing_rod_found_ore": "Dowsing Rod Found Item Sound",
+  "item.tutorialmod.bar_brawl_music_disc": "Bar Brawl Music Disc",
+  "item.tutorialmod.bar_brawl_music_disc.desc": "Bryan Tech - Bar Brawl (CC0)"
 }

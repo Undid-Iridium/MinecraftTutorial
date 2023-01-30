@@ -9,6 +9,7 @@ import net.minecraftforge.registries.RegistryObject;
 import net.undidiridium.tutorialmod.TutorialMod;
 import net.undidiridium.tutorialmod.block.ModBlocks;
 import net.undidiridium.tutorialmod.item.custom.*;
+import net.undidiridium.tutorialmod.sound.ModSounds;
 
 public class ModItems {
     /**
@@ -67,6 +68,9 @@ public class ModItems {
 
     public static final RegistryObject<Item> CUCUMBER_SEEDS = ITEMS.register("cucumber_seeds",
             () -> new ItemNameBlockItem(ModBlocks.CUCUMBER_PLANT.get(), new Item.Properties().tab(ModCreativeModeTab.TUTORIAL_TAB)));
+
+    public static final RegistryObject<Item> BAR_BRAWL_MUSIC_DISK = ITEMS.register("bar_brawl_music_disc",
+            () -> new RecordItem(4, ModSounds.BAR_BRAWL, new Item.Properties().tab(ModCreativeModeTab.TUTORIAL_TAB).stacksTo(1)));
 
     /**
      * Called in tutorial mod to register
