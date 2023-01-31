@@ -32,6 +32,8 @@ public class ModSounds {
             ModSounds.CITRINE_LAMP_HIT, ModSounds.CITRINE_LAMP_FALL);
     public static RegistryObject<SoundEvent> BAR_BRAWL = registerSoundEvent("bar_brawl");
 
+    public static RegistryObject<SoundEvent> AFTER_DARK = registerSoundEvent("after_dark");
+
     private static RegistryObject<SoundEvent> registerSoundEvent(final String name) {
         return SOUND_EVENTS.register(name, () -> new SoundEvent(new ResourceLocation(TutorialMod.MOD_ID, name)));
     }

@@ -10,6 +10,9 @@ import net.undidiridium.tutorialmod.TutorialMod;
 
 public class ModTags {
     public static class Blocks {
+        /**
+         * Grabs and assigns this tag by the data, minecraft, tutorialmod, tags folder.
+         */
         public static final TagKey<Block> DOWSING_ROD_VALUABLES = tag("dowsing_rod_valuables");
 
         private static TagKey<Block> tag(final String name) {

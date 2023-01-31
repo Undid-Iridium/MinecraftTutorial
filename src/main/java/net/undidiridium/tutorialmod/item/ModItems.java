@@ -72,6 +72,9 @@ public class ModItems {
     public static final RegistryObject<Item> BAR_BRAWL_MUSIC_DISK = ITEMS.register("bar_brawl_music_disc",
             () -> new RecordItem(4, ModSounds.BAR_BRAWL, new Item.Properties().tab(ModCreativeModeTab.TUTORIAL_TAB).stacksTo(1)));
 
+    public static final RegistryObject<Item> AFTER_DARK_MUSIC_DISK = ITEMS.register("after_dark_music_disc",
+            () -> new RecordItem(4, ModSounds.AFTER_DARK, new Item.Properties().tab(ModCreativeModeTab.TUTORIAL_TAB).stacksTo(1)));
+
     /**
      * Called in tutorial mod to register
      *

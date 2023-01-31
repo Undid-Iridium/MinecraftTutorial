@@ -42,5 +42,13 @@
         "stream": true
       }
     ]
+  },
+  "after_dark": {
+    "sounds": [
+      {
+        "name": "tutorialmod:after_dark",
+        "stream": true
+      }
+    ]
   }
 }

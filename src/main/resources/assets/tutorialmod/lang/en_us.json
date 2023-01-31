@@ -48,5 +48,12 @@
   "block.tutorialmod.cucumber_plant": "Cucumber Plant",
   "sounds.tutorialmod.dowsing_rod_found_ore": "Dowsing Rod Found Item Sound",
   "item.tutorialmod.bar_brawl_music_disc": "Bar Brawl Music Disc",
-  "item.tutorialmod.bar_brawl_music_disc.desc": "Bryan Tech - Bar Brawl (CC0)"
+  "item.tutorialmod.bar_brawl_music_disc.desc": "Bryan Tech - Bar Brawl (CC0)",
+  "item.tutorialmod.after_dark_music_disc": "After Dark Music Disc",
+  "item.tutorialmod.after_dark_music_disc.desc": "Mr. Kitty - After Dark (CC0)",
+  "block.tutorialmod.ebony_log": "Ebony Log",
+  "block.tutorialmod.ebony_planks": "Ebony Planks",
+  "block.tutorialmod.ebony_wood": "Ebony Wood",
+  "block.tutorialmod.stripped_ebony_log": "Stripped Ebony Log",
+  "block.tutorialmod.stripped_ebony_wood": "Stripped Ebony Wood"
 }
