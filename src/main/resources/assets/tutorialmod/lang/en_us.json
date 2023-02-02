@@ -57,5 +57,6 @@
   "block.tutorialmod.stripped_ebony_log": "Stripped Ebony Log",
   "block.tutorialmod.stripped_ebony_wood": "Stripped Ebony Wood",
   "block.tutorialmod.ebony_leaves": "Ebony Leaves",
-  "block.tutorialmod.ebony_sapling": "Ebony Sapling"
+  "block.tutorialmod.ebony_sapling": "Ebony Sapling",
+  "effect.tutorialmod.freeze": "Freeze"
 }
