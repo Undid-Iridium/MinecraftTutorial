@@ -8,7 +8,7 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.ToolAction;
-import net.undidiridium.tutorialmod.block.ModBlocks;
+import net.undidiridium.tutorialmod.EbonyRegistration;
 import org.jetbrains.annotations.Nullable;
 
 public class ModFlammableRotatedPillarBlock extends RotatedPillarBlock {
@@ -38,11 +38,11 @@ public class ModFlammableRotatedPillarBlock extends RotatedPillarBlock {
         // if (stack.getItem() instanceof AxeItem) { previous
         // Suggested (context.getItemInHand().getItem() instanceof AxeItem)
         if (context.getItemInHand().getItem() instanceof AxeItem) {
-            if (state.is(ModBlocks.EBONY_LOG.get())) {
-                return ModBlocks.STRIPPED_EBONY_LOG.get().defaultBlockState().setValue(RotatedPillarBlock.AXIS, state.getValue(RotatedPillarBlock.AXIS));
+            if (state.is(EbonyRegistration.EBONY_LOG.get())) {
+                return EbonyRegistration.STRIPPED_EBONY_LOG.get().defaultBlockState().setValue(RotatedPillarBlock.AXIS, state.getValue(RotatedPillarBlock.AXIS));
             }
-            if (state.is(ModBlocks.EBONY_WOOD.get())) {
-                return ModBlocks.STRIPPED_EBONY_WOOD.get().defaultBlockState().setValue(RotatedPillarBlock.AXIS, state.getValue(RotatedPillarBlock.AXIS));
+            if (state.is(EbonyRegistration.EBONY_WOOD.get())) {
+                return EbonyRegistration.STRIPPED_EBONY_WOOD.get().defaultBlockState().setValue(RotatedPillarBlock.AXIS, state.getValue(RotatedPillarBlock.AXIS));
             }
         }
 
