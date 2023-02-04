@@ -58,5 +58,10 @@
   "block.tutorialmod.stripped_ebony_wood": "Stripped Ebony Wood",
   "block.tutorialmod.ebony_leaves": "Ebony Leaves",
   "block.tutorialmod.ebony_sapling": "Ebony Sapling",
-  "effect.tutorialmod.freeze": "Freeze"
+  "effect.tutorialmod.freeze": "Freeze",
+  "item.minecraft.potion.effect.freeze_potion": "Freeze Potion",
+  "item.minecraft.splash_potion.effect.freeze_potion": "Splash Potion of Freeze",
+  "item.minecraft.lingering_potion.effect.freeze_potion": "Lingering Potion of Freeze",
+  "item.tutorialmod.citrine_staff": "Citrine Staff",
+  "block.tutorialmod.gem_cutting_station": "Gem Cutting Station"
 }

@@ -75,6 +75,9 @@ public class ModItems {
     public static final RegistryObject<Item> AFTER_DARK_MUSIC_DISK = ITEMS.register("after_dark_music_disc",
             () -> new RecordItem(4, ModSounds.AFTER_DARK, new Item.Properties().tab(ModCreativeModeTab.TUTORIAL_TAB).stacksTo(1)));
 
+    public static final RegistryObject<Item> CITRINE_STAFF = ITEMS.register("citrine_staff",
+            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.TUTORIAL_TAB).stacksTo(1).durability(500)));
+
     /**
      * Called in tutorial mod to register
      *

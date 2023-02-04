@@ -37,8 +37,12 @@ public class ModEventClientBusEvents {
 
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.CUCUMBER_PLANT.get(), RenderType.cutout());
 
+        // No transparency, cutout
         ItemBlockRenderTypes.setRenderLayer(EbonyRegistration.EBONY_LEAVES.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(EbonyRegistration.EBONY_SAPLING.get(), RenderType.cutout());
+
+        // Has any transparency, translucent
+        ItemBlockRenderTypes.setRenderLayer(ModBlocks.GEM_CUTTING_STATION.get(), RenderType.translucent());
     }
 
     @SubscribeEvent

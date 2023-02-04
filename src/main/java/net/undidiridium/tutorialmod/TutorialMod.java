@@ -1,9 +1,11 @@
 package net.undidiridium.tutorialmod;
 
 import com.mojang.logging.LogUtils;
+import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.brewing.BrewingRecipeRegistry;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -12,7 +14,9 @@ import net.undidiridium.tutorialmod.block.ModBlocks;
 import net.undidiridium.tutorialmod.effect.ModEffects;
 import net.undidiridium.tutorialmod.item.ModItems;
 import net.undidiridium.tutorialmod.painting.ModPaintings;
+import net.undidiridium.tutorialmod.potion.ModPotions;
 import net.undidiridium.tutorialmod.sound.ModSounds;
+import net.undidiridium.tutorialmod.util.BetterBrewingRecipe;
 import org.slf4j.Logger;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -41,6 +45,7 @@ public class TutorialMod {
         ModBlocks.register(event_bus);
         ModPaintings.register(event_bus);
         ModSounds.register(event_bus);
+        ModPotions.register(event_bus);
         ModEffects.register(event_bus);
         event_bus.addListener(TutorialMod::setup);
         //event_bus.addListener(this::clientSetup); Incorrect, do not do this due to this class being called for server/client
@@ -55,6 +60,8 @@ public class TutorialMod {
         LOGGER.info("DIRT BLOCK >> {}", Blocks.DIRT.getRegistryName());
         event.enqueueWork(() -> {
             ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.PINK_ROSE.getId(), ModBlocks.POTTED_PINK_ROSE);
+
+            BrewingRecipeRegistry.addRecipe(new BetterBrewingRecipe(Potions.AWKWARD, ModItems.CITRINE.get(), ModPotions.FREEZE_POTION.get()));
         });
     }
 

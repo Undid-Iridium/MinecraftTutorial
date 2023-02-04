@@ -10,27 +10,26 @@ import net.minecraft.world.level.block.SaplingBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.registries.RegistryObject;
+import net.undidiridium.tutorialmod.block.ModBlocks;
 import net.undidiridium.tutorialmod.block.custom.ModFlammableRotatedPillarBlock;
 import net.undidiridium.tutorialmod.item.ModCreativeModeTab;
 import net.undidiridium.tutorialmod.world.feature.tree.EbonyTreeGrower;
 
-import static net.undidiridium.tutorialmod.block.ModBlocks.registerBlock;
-
 public class EbonyRegistration {
 
-    public static final RegistryObject<Block> EBONY_LOG = registerBlock("ebony_log",
+    public static final RegistryObject<Block> EBONY_LOG = ModBlocks.registerBlock("ebony_log",
             () -> new ModFlammableRotatedPillarBlock(
                     BlockBehaviour.Properties.copy(Blocks.OAK_LOG)), ModCreativeModeTab.TUTORIAL_TAB);
-    public static final RegistryObject<Block> EBONY_WOOD = registerBlock("ebony_wood",
+    public static final RegistryObject<Block> EBONY_WOOD = ModBlocks.registerBlock("ebony_wood",
             () -> new ModFlammableRotatedPillarBlock(
                     BlockBehaviour.Properties.copy(Blocks.OAK_WOOD)), ModCreativeModeTab.TUTORIAL_TAB);
-    public static final RegistryObject<Block> STRIPPED_EBONY_LOG = registerBlock("stripped_ebony_log",
+    public static final RegistryObject<Block> STRIPPED_EBONY_LOG = ModBlocks.registerBlock("stripped_ebony_log",
             () -> new ModFlammableRotatedPillarBlock(
                     BlockBehaviour.Properties.copy(Blocks.STRIPPED_OAK_LOG)), ModCreativeModeTab.TUTORIAL_TAB);
-    public static final RegistryObject<Block> STRIPPED_EBONY_WOOD = registerBlock("stripped_ebony_wood",
+    public static final RegistryObject<Block> STRIPPED_EBONY_WOOD = ModBlocks.registerBlock("stripped_ebony_wood",
             () -> new ModFlammableRotatedPillarBlock(
                     BlockBehaviour.Properties.copy(Blocks.STRIPPED_OAK_WOOD)), ModCreativeModeTab.TUTORIAL_TAB);
-    public static final RegistryObject<Block> EBONY_PLANKS = registerBlock("ebony_planks",
+    public static final RegistryObject<Block> EBONY_PLANKS = ModBlocks.registerBlock("ebony_planks",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)) {
                 @Override
                 public boolean isFlammable(final BlockState state, final BlockGetter world, final BlockPos pos, final Direction face) {
@@ -48,7 +47,7 @@ public class EbonyRegistration {
                 }
             }, ModCreativeModeTab.TUTORIAL_TAB);
 
-    public static final RegistryObject<Block> EBONY_LEAVES = registerBlock("ebony_leaves",
+    public static final RegistryObject<Block> EBONY_LEAVES = ModBlocks.registerBlock("ebony_leaves",
             () -> new LeavesBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES)) {
                 @Override
                 public boolean isFlammable(final BlockState state, final BlockGetter world, final BlockPos pos, final Direction face) {
@@ -66,7 +65,7 @@ public class EbonyRegistration {
                 }
             }, ModCreativeModeTab.TUTORIAL_TAB);
 
-    public static final RegistryObject<Block> EBONY_SAPLING = registerBlock("ebony_sapling",
+    public static final RegistryObject<Block> EBONY_SAPLING = ModBlocks.registerBlock("ebony_sapling",
             () -> new SaplingBlock(new EbonyTreeGrower(),
                     BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)), ModCreativeModeTab.TUTORIAL_TAB);
 

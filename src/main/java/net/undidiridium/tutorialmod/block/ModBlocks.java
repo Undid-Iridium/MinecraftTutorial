@@ -2,6 +2,7 @@ package net.undidiridium.tutorialmod.block;
 
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
@@ -17,6 +18,7 @@ import net.undidiridium.tutorialmod.EbonyRegistration;
 import net.undidiridium.tutorialmod.TutorialMod;
 import net.undidiridium.tutorialmod.block.custom.CitrineLampBlock;
 import net.undidiridium.tutorialmod.block.custom.CucumberPlantBlock;
+import net.undidiridium.tutorialmod.block.custom.GemCuttingStationBlock;
 import net.undidiridium.tutorialmod.block.custom.SpeedyBlock;
 import net.undidiridium.tutorialmod.item.ModCreativeModeTab;
 import net.undidiridium.tutorialmod.item.ModItems;
@@ -38,7 +40,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> RAW_CITRINE_BLOCK = registerBlock("raw_citrine_block",
             () -> new Block(BlockBehaviour.Properties.of(Material.METAL).strength(7f).requiresCorrectToolForDrops()), ModCreativeModeTab.TUTORIAL_TAB);
     public static final RegistryObject<Block> CITRINE_ORE = registerBlock("citrine_ore",
-            () -> new Block(BlockBehaviour.Properties.of(Material.STONE).strength(5f).requiresCorrectToolForDrops()), ModCreativeModeTab.TUTORIAL_TAB);
+            () -> new OreBlock(BlockBehaviour.Properties.of(Material.STONE).strength(5f).requiresCorrectToolForDrops(), UniformInt.of(3, 7)), ModCreativeModeTab.TUTORIAL_TAB);
     public static final RegistryObject<Block> DEEPSLATE_CITRINE_ORE = registerBlock("deepslate_citrine_ore",
             () -> new Block(BlockBehaviour.Properties.of(Material.STONE).strength(7f).requiresCorrectToolForDrops().destroyTime(5).color(MaterialColor.COLOR_BLUE)), ModCreativeModeTab.TUTORIAL_TAB);
     public static final RegistryObject<Block> ENDSTONE_CITRINE_ORE = registerBlock("endstone_citrine_ore",
@@ -91,6 +93,9 @@ public class ModBlocks {
     public static final RegistryObject<Block> CUCUMBER_PLANT = registerBlockWithoutBlockItem("cucumber_plant",
             () -> new CucumberPlantBlock(
                     BlockBehaviour.Properties.copy(Blocks.WHEAT).noOcclusion()));
+
+    public static final RegistryObject<Block> GEM_CUTTING_STATION = ModBlocks.registerBlock("gem_cutting_station",
+            () -> new GemCuttingStationBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).noOcclusion()), ModCreativeModeTab.TUTORIAL_TAB);
 
 
     /**
