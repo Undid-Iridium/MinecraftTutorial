@@ -11,10 +11,12 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.undidiridium.tutorialmod.block.ModBlocks;
+import net.undidiridium.tutorialmod.block.entity.ModBlockEntities;
 import net.undidiridium.tutorialmod.effect.ModEffects;
 import net.undidiridium.tutorialmod.item.ModItems;
 import net.undidiridium.tutorialmod.painting.ModPaintings;
 import net.undidiridium.tutorialmod.potion.ModPotions;
+import net.undidiridium.tutorialmod.screen.ModMenuTypes;
 import net.undidiridium.tutorialmod.sound.ModSounds;
 import net.undidiridium.tutorialmod.util.BetterBrewingRecipe;
 import org.slf4j.Logger;
@@ -43,6 +45,8 @@ public class TutorialMod {
 
         ModItems.register(event_bus);
         ModBlocks.register(event_bus);
+        ModBlockEntities.register(event_bus);
+        ModMenuTypes.register(event_bus);
         ModPaintings.register(event_bus);
         ModSounds.register(event_bus);
         ModPotions.register(event_bus);

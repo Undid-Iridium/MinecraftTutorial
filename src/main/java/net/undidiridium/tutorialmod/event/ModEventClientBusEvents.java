@@ -1,5 +1,6 @@
 package net.undidiridium.tutorialmod.event;
 
+import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
@@ -15,6 +16,8 @@ import net.undidiridium.tutorialmod.block.ModBlocks;
 import net.undidiridium.tutorialmod.event.loot.CoalCokeFromCreeperAdditionModifier;
 import net.undidiridium.tutorialmod.event.loot.CucumberSeedsFromGrassAdditionModifier;
 import net.undidiridium.tutorialmod.event.loot.DowsingRodInIglooAdditionModifier;
+import net.undidiridium.tutorialmod.screen.GemCuttingStationScreen;
+import net.undidiridium.tutorialmod.screen.ModMenuTypes;
 import net.undidiridium.tutorialmod.util.ModItemProperties;
 
 import javax.annotation.Nonnull;
@@ -43,6 +46,8 @@ public class ModEventClientBusEvents {
 
         // Has any transparency, translucent
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.GEM_CUTTING_STATION.get(), RenderType.translucent());
+
+        MenuScreens.register(ModMenuTypes.GEM_CUTTING_STATION_MENU.get(), GemCuttingStationScreen::new);
     }
 
     @SubscribeEvent
