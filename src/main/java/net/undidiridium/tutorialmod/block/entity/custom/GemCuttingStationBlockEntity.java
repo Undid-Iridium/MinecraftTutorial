@@ -18,6 +18,7 @@ import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.Material;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
@@ -106,10 +107,9 @@ public class GemCuttingStationBlockEntity extends BlockEntity implements MenuPro
 
     public static void tick(final Level pLevel, final BlockPos pPos, final BlockState pState,
                             final GemCuttingStationBlockEntity pBlockEntity) {
-        if (hasRecipe(pBlockEntity)) {
-            //TODO Will either have to do another for loop like hasRecipe or store each item and such to prevent
-            // quick swap.
-            // Either way, annoying
+        //TODO Will either have to do another for loop like hasRecipe or store each item and such to prevent
+        // quick swap.
+        // Either way, annoying
 //            if (!pBlockEntity.currentRecipe.isEmpty()) {
 //                if (pBlockEntity.currentRecipe.get().getIngredients().stream().allMatch(pBlockEntity.previousRecipe
 //                .get().getIngredients()::contains)) {
@@ -119,6 +119,7 @@ public class GemCuttingStationBlockEntity extends BlockEntity implements MenuPro
 //                    return;
 //                }
 //            }
+        if (hasRecipe(pBlockEntity)) {
             pBlockEntity.progress++;
             //Tells game to update render? No..Whenever your data changes you need to call BlockEntity#setChanged(),
             // otherwise the LevelChunk containing your BlockEntity might be skipped while the level is saved.
@@ -140,9 +141,6 @@ public class GemCuttingStationBlockEntity extends BlockEntity implements MenuPro
         final SimpleContainer inventory = new SimpleContainer(entity.itemHandler.getSlots());
 //        final boolean assignOnly = false;
 //        final boolean itemChanged = false;
-
-        for (int inventoryIndexSlot = 0; inventoryIndexSlot < entity.itemHandler.getSlots(); inventoryIndexSlot++) {
-            inventory.setItem(inventoryIndexSlot, entity.itemHandler.getStackInSlot(inventoryIndexSlot));
 //            final int finalInventoryIndexSlot = inventoryIndexSlot;
 //            entity.previousItems.stream().map(
 //                 currentItem -> currentItem.getRegistryName().toString().equals(inventory.getItem
@@ -156,15 +154,13 @@ public class GemCuttingStationBlockEntity extends BlockEntity implements MenuPro
 //            .getRegistryName().toString())) {
 //                itemChanged = true;
 //            }
-        }
+
 
 //        // If you get multi-line weird highlight, alt shift insert is the culprit.
 //        if (!itemChanged) {
 //            entity.itemsHaveChanged = true;
 //        }
 
-        final Optional<GemCuttingStationRecipe> match = level.getRecipeManager()
-                .getRecipeFor(GemCuttingStationRecipe.Type.INSTANCE, inventory, level);
 
 //        if (match.isPresent()) {
 //            entity.currentRecipe = match;
@@ -172,10 +168,40 @@ public class GemCuttingStationBlockEntity extends BlockEntity implements MenuPro
 //                entity.previousRecipe = match;
 //            }
 //        }
+        for (int inventoryIndexSlot = 0; inventoryIndexSlot < entity.itemHandler.getSlots(); inventoryIndexSlot++) {
+            inventory.setItem(inventoryIndexSlot, entity.itemHandler.getStackInSlot(inventoryIndexSlot));
+        }
+
+        final Optional<GemCuttingStationRecipe> match = level.getRecipeManager()
+                .getRecipeFor(GemCuttingStationRecipe.Type.INSTANCE, inventory, level);
 
         return match.isPresent() && canInsertAmountIntoOutputSlot(inventory)
                 && canInsertItemIntoOutputSlot(inventory, match.get().getResultItem())
-                && hasWaterInWaterSlot(entity) && hasToolsInToolSlot(entity);
+                && (hasWaterInWaterSlot(entity) || hasWaterNextToEntity(entity)) && hasToolsInToolSlot(entity);
+    }
+
+    private static boolean hasWaterNextToEntity(final GemCuttingStationBlockEntity entity) {
+//        entity.worldPosition.north();
+        if (entity.level.getBlockState(entity.worldPosition.north()).getMaterial() == Material.WATER) {
+            return true;
+        }
+        if (entity.level.getBlockState(entity.worldPosition.south()).getMaterial() == Material.WATER) {
+            return true;
+        }
+        if (entity.level.getBlockState(entity.worldPosition.east()).getMaterial() == Material.WATER) {
+            return true;
+        }
+        if (entity.level.getBlockState(entity.worldPosition.west()).getMaterial() == Material.WATER) {
+            return true;
+        }
+        if (entity.level.getBlockState(entity.worldPosition.above()).getMaterial() == Material.WATER) {
+            return true;
+        }
+        if (entity.level.getBlockState(entity.worldPosition.below()).getMaterial() == Material.WATER) {
+            return true;
+        }
+
+        return false;
     }
 
     private static boolean hasWaterInWaterSlot(final GemCuttingStationBlockEntity entity) {
@@ -232,7 +258,7 @@ public class GemCuttingStationBlockEntity extends BlockEntity implements MenuPro
                     return;
                 }
             }
-            else {
+            else if (canInsertAmountIntoOutputSlot(inventory, 1)) {
                 entity.itemHandler.setStackInSlot(outputSlot, new ItemStack(match.get().getResultItem().getItem(),
                         entity.itemHandler.getStackInSlot(outputSlot).getCount() + 1));
             }
@@ -251,11 +277,11 @@ public class GemCuttingStationBlockEntity extends BlockEntity implements MenuPro
     }
 
     private static boolean canInsertAmountIntoOutputSlot(final SimpleContainer inventory, final int amountToAdd) {
-        return inventory.getItem(outputSlot).getMaxStackSize() >= (inventory.getItem(outputSlot).getCount() + amountToAdd);
+        return inventory.getItem(outputSlot).getMaxStackSize() > (inventory.getItem(outputSlot).getCount() + amountToAdd);
     }
 
     private static boolean canInsertAmountIntoOutputSlot(final SimpleContainer inventory) {
-        return inventory.getItem(outputSlot).getMaxStackSize() >= inventory.getItem(outputSlot).getCount();
+        return inventory.getItem(outputSlot).getMaxStackSize() > inventory.getItem(outputSlot).getCount() + 1;
     }
 
     @Override
