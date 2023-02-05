@@ -38,6 +38,7 @@ import java.util.Random;
 public class GemCuttingStationBlockEntity extends BlockEntity implements MenuProvider {
     public static final int containerSize = 3;
     public static final int stationContainerSize = 4;
+    private static final int outputSlot = 3;
     protected final ContainerData data;
     private final ItemStackHandler itemHandler = new ItemStackHandler(4) {
         @Override
@@ -45,6 +46,8 @@ public class GemCuttingStationBlockEntity extends BlockEntity implements MenuPro
             GemCuttingStationBlockEntity.this.setChanged();
         }
     };
+    private final Optional<GemCuttingStationRecipe> previousRecipe;
+    private final Optional<GemCuttingStationRecipe> currentRecipe;
     private int instantCraft;
     private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
     private int progress = 0;
@@ -54,9 +57,12 @@ public class GemCuttingStationBlockEntity extends BlockEntity implements MenuPro
         this(pWorldPosition, pBlockState, 0);
     }
 
-    public GemCuttingStationBlockEntity(final BlockPos pWorldPosition, final BlockState pBlockState, final int instantCraftable) {
+    public GemCuttingStationBlockEntity(final BlockPos pWorldPosition, final BlockState pBlockState,
+                                        final int instantCraftable) {
         super(ModBlockEntities.GEM_CUTTING_STATION_BLOCK_ENTITY.get(), pWorldPosition, pBlockState);
         this.instantCraft = instantCraftable;
+        this.currentRecipe = Optional.empty();
+        this.previousRecipe = Optional.empty();
         this.data = new ContainerData() {
             @Override
             public int get(final int index) {
@@ -98,8 +104,21 @@ public class GemCuttingStationBlockEntity extends BlockEntity implements MenuPro
         };
     }
 
-    public static void tick(final Level pLevel, final BlockPos pPos, final BlockState pState, final GemCuttingStationBlockEntity pBlockEntity) {
+    public static void tick(final Level pLevel, final BlockPos pPos, final BlockState pState,
+                            final GemCuttingStationBlockEntity pBlockEntity) {
         if (hasRecipe(pBlockEntity)) {
+            //TODO Will either have to do another for loop like hasRecipe or store each item and such to prevent
+            // quick swap.
+            // Either way, annoying
+//            if (!pBlockEntity.currentRecipe.isEmpty()) {
+//                if (pBlockEntity.currentRecipe.get().getIngredients().stream().allMatch(pBlockEntity.previousRecipe
+//                .get().getIngredients()::contains)) {
+//                    pBlockEntity.resetProgress();
+//                    BlockEntity.setChanged(pLevel, pPos, pState);
+//                    pBlockEntity.previousRecipe = pBlockEntity.currentRecipe;
+//                    return;
+//                }
+//            }
             pBlockEntity.progress++;
             //Tells game to update render? No..Whenever your data changes you need to call BlockEntity#setChanged(),
             // otherwise the LevelChunk containing your BlockEntity might be skipped while the level is saved.
@@ -109,7 +128,8 @@ public class GemCuttingStationBlockEntity extends BlockEntity implements MenuPro
             if (pBlockEntity.progress > pBlockEntity.maxProgress || pBlockEntity.instantCraft == 1) {
                 craftItem(pBlockEntity);
             }
-        } else {
+        }
+        else {
             pBlockEntity.resetProgress();
             BlockEntity.setChanged(pLevel, pPos, pState);
         }
@@ -118,12 +138,40 @@ public class GemCuttingStationBlockEntity extends BlockEntity implements MenuPro
     private static boolean hasRecipe(final GemCuttingStationBlockEntity entity) {
         final Level level = entity.level;
         final SimpleContainer inventory = new SimpleContainer(entity.itemHandler.getSlots());
-        for (int i = 0; i < entity.itemHandler.getSlots(); i++) {
-            inventory.setItem(i, entity.itemHandler.getStackInSlot(i));
+//        final boolean assignOnly = false;
+//        final boolean itemChanged = false;
+
+        for (int inventoryIndexSlot = 0; inventoryIndexSlot < entity.itemHandler.getSlots(); inventoryIndexSlot++) {
+            inventory.setItem(inventoryIndexSlot, entity.itemHandler.getStackInSlot(inventoryIndexSlot));
+//            final int finalInventoryIndexSlot = inventoryIndexSlot;
+//            entity.previousItems.stream().map(
+//                 currentItem -> currentItem.getRegistryName().toString().equals(inventory.getItem
+//                 (finalInventoryIndexSlot).getItem().getRegistryName().toString())
+//            );
+//            if (entity.previousItems.isEmpty() || assignOnly) {
+//                assignOnly = true;
+//                continue;
+//            }
+//            if (!entity.previousItems.contains(entity.itemHandler.getStackInSlot(inventoryIndexSlot).getItem()
+//            .getRegistryName().toString())) {
+//                itemChanged = true;
+//            }
         }
+
+//        // If you get multi-line weird highlight, alt shift insert is the culprit.
+//        if (!itemChanged) {
+//            entity.itemsHaveChanged = true;
+//        }
 
         final Optional<GemCuttingStationRecipe> match = level.getRecipeManager()
                 .getRecipeFor(GemCuttingStationRecipe.Type.INSTANCE, inventory, level);
+
+//        if (match.isPresent()) {
+//            entity.currentRecipe = match;
+//            if (entity.previousRecipe.isEmpty()) {
+//                entity.previousRecipe = match;
+//            }
+//        }
 
         return match.isPresent() && canInsertAmountIntoOutputSlot(inventory)
                 && canInsertItemIntoOutputSlot(inventory, match.get().getResultItem())
@@ -151,6 +199,17 @@ public class GemCuttingStationBlockEntity extends BlockEntity implements MenuPro
         final ItemStack ItemAddedToConsume;
         if (match.isPresent()) {
 
+
+            //            System.out.println("What is the item: " + match.get().getResultItem().getItem()
+            //            .getRegistryName()
+//                    + " : " + ItemAddedToConsume.getItem().getRegistryName() + " : "
+//                    + ItemAddedToConsume.getItem().getRegistryName().compareTo(ModItems.RAW_CITRINE.getId()));
+//            System.out.println("What is the item of citrine and block: " + ModItems.RAW_CITRINE.getId() + "  :  " +
+//            ModBlocks.CITRINE_BLOCK.getId());
+//            System.out.println("Comparing time: " + ItemAddedToConsume.getItem().getRegistryName().toString()
+//            .equals(ModBlocks.CITRINE_BLOCK.getId().toString()));
+
+
 //            ItemAddedToConsume = entity.itemHandler.extractItem(1, 1, false);
             //Grab current item
             ItemAddedToConsume = entity.itemHandler.getStackInSlot(1);
@@ -160,23 +219,22 @@ public class GemCuttingStationBlockEntity extends BlockEntity implements MenuPro
              * FYI ALL RECIPES AND INFORMATION FROM DATA FOLDER IS AUTO READ IN.
              * CTRL + SHIFT + F9 then reload classes, do this in intellij
              */
-//            System.out.println("What is the item: " + match.get().getResultItem().getItem().getRegistryName()
-//                    + " : " + ItemAddedToConsume.getItem().getRegistryName() + " : "
-//                    + ItemAddedToConsume.getItem().getRegistryName().compareTo(ModItems.RAW_CITRINE.getId()));
-//            System.out.println("What is the item of citrine and block: " + ModItems.RAW_CITRINE.getId() + "  :  " + ModBlocks.CITRINE_BLOCK.getId());
-//            System.out.println("Comparing time: " + ItemAddedToConsume.getItem().getRegistryName().toString().equals(ModBlocks.CITRINE_BLOCK.getId().toString()));
 
-            //TODO Better way of handling comparing names. There MUST be a smarter way than this or resource checking (which showed -15 for the "same" object")
+            //TODO Better way of handling comparing names. There MUST be a smarter way than this or resource checking
+            // (which showed -15 for the "same" object"). Switch does not work due to needing constant for case.
+            // Probably much faster overall; however, much more hard-coded strings.
             if (ItemAddedToConsume.getItem().getRegistryName().toString().equals(ModBlocks.CITRINE_BLOCK.getId().toString())) {
                 if (canInsertAmountIntoOutputSlot(inventory, 9)) {
-                    entity.itemHandler.setStackInSlot(3, new ItemStack(match.get().getResultItem().getItem(),
-                            entity.itemHandler.getStackInSlot(3).getCount() + 9));
-                } else {
+                    entity.itemHandler.setStackInSlot(outputSlot, new ItemStack(match.get().getResultItem().getItem(),
+                            entity.itemHandler.getStackInSlot(outputSlot).getCount() + 9));
+                }
+                else {
                     return;
                 }
-            } else {
-                entity.itemHandler.setStackInSlot(3, new ItemStack(match.get().getResultItem().getItem(),
-                        entity.itemHandler.getStackInSlot(3).getCount() + 1));
+            }
+            else {
+                entity.itemHandler.setStackInSlot(outputSlot, new ItemStack(match.get().getResultItem().getItem(),
+                        entity.itemHandler.getStackInSlot(outputSlot).getCount() + 1));
             }
 
             if (entity.itemHandler.getStackInSlot(2).hurt(1, new Random(), null)) {
@@ -189,15 +247,15 @@ public class GemCuttingStationBlockEntity extends BlockEntity implements MenuPro
     }
 
     private static boolean canInsertItemIntoOutputSlot(final SimpleContainer inventory, final ItemStack output) {
-        return inventory.getItem(3).getItem() == output.getItem() || inventory.getItem(3).isEmpty();
+        return inventory.getItem(outputSlot).getItem() == output.getItem() || inventory.getItem(outputSlot).isEmpty();
     }
 
     private static boolean canInsertAmountIntoOutputSlot(final SimpleContainer inventory, final int amountToAdd) {
-        return inventory.getItem(3).getMaxStackSize() >= (inventory.getItem(3).getCount() + amountToAdd);
+        return inventory.getItem(outputSlot).getMaxStackSize() >= (inventory.getItem(outputSlot).getCount() + amountToAdd);
     }
 
     private static boolean canInsertAmountIntoOutputSlot(final SimpleContainer inventory) {
-        return inventory.getItem(3).getMaxStackSize() >= inventory.getItem(3).getCount();
+        return inventory.getItem(outputSlot).getMaxStackSize() >= inventory.getItem(outputSlot).getCount();
     }
 
     @Override
@@ -213,7 +271,8 @@ public class GemCuttingStationBlockEntity extends BlockEntity implements MenuPro
 
     @Nonnull
     @Override
-    public <T> LazyOptional<T> getCapability(@Nonnull final Capability<T> cap, @javax.annotation.Nullable final Direction side) {
+    public <T> LazyOptional<T> getCapability(@Nonnull final Capability<T> cap,
+                                             @javax.annotation.Nullable final Direction side) {
         if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
             return this.lazyItemHandler.cast();
         }
