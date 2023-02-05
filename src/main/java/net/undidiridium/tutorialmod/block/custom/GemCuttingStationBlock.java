@@ -102,7 +102,7 @@ public class GemCuttingStationBlock extends BaseEntityBlock {
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(final Level pLevel, final BlockState pState, final BlockEntityType<T> pBlockEntityType) {
-        return BaseEntityBlock.createTickerHelper(pBlockEntityType, ModBlockEntities.GEM_CUTTING_STATION_BLOCK_ENTITY.get(),
+        return pLevel.isClientSide ? null : BaseEntityBlock.createTickerHelper(pBlockEntityType, ModBlockEntities.GEM_CUTTING_STATION_BLOCK_ENTITY.get(),
                 GemCuttingStationBlockEntity::tick);
     }
 }

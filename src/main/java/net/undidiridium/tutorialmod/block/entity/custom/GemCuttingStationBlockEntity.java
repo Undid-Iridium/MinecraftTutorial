@@ -102,6 +102,8 @@ public class GemCuttingStationBlockEntity extends BlockEntity implements MenuPro
             pBlockEntity.progress++;
             //Tells game to update render? No..Whenever your data changes you need to call BlockEntity#setChanged(),
             // otherwise the LevelChunk containing your BlockEntity might be skipped while the level is saved.
+            // https://forge.gemwire.uk/wiki/Block_Entities
+
             BlockEntity.setChanged(pLevel, pPos, pState);
             if (pBlockEntity.progress > pBlockEntity.maxProgress || pBlockEntity.instantCraft == 1) {
                 craftItem(pBlockEntity);
