@@ -35,6 +35,8 @@ import java.util.Optional;
 import java.util.Random;
 
 public class GemCuttingStationBlockEntity extends BlockEntity implements MenuProvider {
+    public static final int containerSize = 3;
+    public static final int stationContainerSize = 4;
     protected final ContainerData data;
     private final ItemStackHandler itemHandler = new ItemStackHandler(4) {
         @Override
@@ -42,17 +44,16 @@ public class GemCuttingStationBlockEntity extends BlockEntity implements MenuPro
             GemCuttingStationBlockEntity.this.setChanged();
         }
     };
+    private int instantCraft;
     private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
     private int progress = 0;
     private int maxProgress = 72;
 
-    private final boolean instantCraft;
-
     public GemCuttingStationBlockEntity(final BlockPos pWorldPosition, final BlockState pBlockState) {
-        this(pWorldPosition, pBlockState, false);
+        this(pWorldPosition, pBlockState, 0);
     }
 
-    public GemCuttingStationBlockEntity(final BlockPos pWorldPosition, final BlockState pBlockState, final boolean instantCraftable) {
+    public GemCuttingStationBlockEntity(final BlockPos pWorldPosition, final BlockState pBlockState, final int instantCraftable) {
         super(ModBlockEntities.GEM_CUTTING_STATION_BLOCK_ENTITY.get(), pWorldPosition, pBlockState);
         this.instantCraft = instantCraftable;
         this.data = new ContainerData() {
@@ -63,6 +64,8 @@ public class GemCuttingStationBlockEntity extends BlockEntity implements MenuPro
                         return GemCuttingStationBlockEntity.this.progress;
                     case 1:
                         return GemCuttingStationBlockEntity.this.maxProgress;
+                    case 2:
+                        return GemCuttingStationBlockEntity.this.instantCraft;
                     default:
                         return 0;
                 }
@@ -77,6 +80,9 @@ public class GemCuttingStationBlockEntity extends BlockEntity implements MenuPro
                     case 1:
                         GemCuttingStationBlockEntity.this.maxProgress = value;
                         break;
+                    case 2:
+                        GemCuttingStationBlockEntity.this.instantCraft = value;
+                        break;
                 }
             }
 
@@ -86,7 +92,7 @@ public class GemCuttingStationBlockEntity extends BlockEntity implements MenuPro
              */
             @Override
             public int getCount() {
-                return 2;
+                return GemCuttingStationBlockEntity.containerSize;
             }
         };
     }
@@ -94,8 +100,10 @@ public class GemCuttingStationBlockEntity extends BlockEntity implements MenuPro
     public static void tick(final Level pLevel, final BlockPos pPos, final BlockState pState, final GemCuttingStationBlockEntity pBlockEntity) {
         if (hasRecipe(pBlockEntity)) {
             pBlockEntity.progress++;
+            //Tells game to update render? No..Whenever your data changes you need to call BlockEntity#setChanged(),
+            // otherwise the LevelChunk containing your BlockEntity might be skipped while the level is saved.
             BlockEntity.setChanged(pLevel, pPos, pState);
-            if (pBlockEntity.progress > pBlockEntity.maxProgress) {
+            if (pBlockEntity.progress > pBlockEntity.maxProgress || pBlockEntity.instantCraft == 1) {
                 craftItem(pBlockEntity);
             }
         } else {

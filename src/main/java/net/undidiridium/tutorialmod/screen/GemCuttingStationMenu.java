@@ -37,12 +37,12 @@ public class GemCuttingStationMenu extends AbstractContainerMenu {
 
 
     public GemCuttingStationMenu(final int pContainerId, final Inventory inv, final FriendlyByteBuf extraData) {
-        this(pContainerId, inv, inv.player.level.getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(2));
+        this(pContainerId, inv, inv.player.level.getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(GemCuttingStationBlockEntity.containerSize));
     }
 
     public GemCuttingStationMenu(final int pContainerId, final Inventory inv, final BlockEntity entity, final ContainerData data) {
         super(ModMenuTypes.GEM_CUTTING_STATION_MENU.get(), pContainerId);
-        AbstractContainerMenu.checkContainerSize(inv, 4);
+        AbstractContainerMenu.checkContainerSize(inv, GemCuttingStationBlockEntity.stationContainerSize);
         this.blockEntity = ((GemCuttingStationBlockEntity) entity);
         this.level = inv.player.level;
         this.data = data;
