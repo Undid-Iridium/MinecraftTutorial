@@ -2,7 +2,7 @@
   "type": "tutorialmod:gem_cutting",
   "ingredients": [
     {
-      "item": "tutorialmod:citrine_block"
+      "item": "tutorialmod:raw_citrine"
     }
   ],
   "output": {

@@ -23,6 +23,7 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
+import net.undidiridium.tutorialmod.block.ModBlocks;
 import net.undidiridium.tutorialmod.block.entity.ModBlockEntities;
 import net.undidiridium.tutorialmod.item.ModItems;
 import net.undidiridium.tutorialmod.recipe.GemCuttingStationRecipe;
@@ -147,16 +148,42 @@ public class GemCuttingStationBlockEntity extends BlockEntity implements MenuPro
         final Optional<GemCuttingStationRecipe> match = level.getRecipeManager()
                 .getRecipeFor(GemCuttingStationRecipe.Type.INSTANCE, inventory, level);
 
+        final ItemStack ItemAddedToConsume;
         if (match.isPresent()) {
-            entity.itemHandler.extractItem(0, 1, false);
-            entity.itemHandler.extractItem(1, 1, false);
+
+//            ItemAddedToConsume = entity.itemHandler.extractItem(1, 1, false);
+            //Grab current item
+            ItemAddedToConsume = entity.itemHandler.getStackInSlot(1);
+
+
+            /**
+             * FYI ALL RECIPES AND INFORMATION FROM DATA FOLDER IS AUTO READ IN.
+             * CTRL + SHIFT + F9 then reload classes, do this in intellij
+             */
+//            System.out.println("What is the item: " + match.get().getResultItem().getItem().getRegistryName()
+//                    + " : " + ItemAddedToConsume.getItem().getRegistryName() + " : "
+//                    + ItemAddedToConsume.getItem().getRegistryName().compareTo(ModItems.RAW_CITRINE.getId()));
+//            System.out.println("What is the item of citrine and block: " + ModItems.RAW_CITRINE.getId() + "  :  " + ModBlocks.CITRINE_BLOCK.getId());
+//            System.out.println("Comparing time: " + ItemAddedToConsume.getItem().getRegistryName().toString().equals(ModBlocks.CITRINE_BLOCK.getId().toString()));
+
+            //TODO Better way of handling comparing names. There MUST be a smarter way than this or resource checking (which showed -15 for the "same" object")
+            if (ItemAddedToConsume.getItem().getRegistryName().toString().equals(ModBlocks.CITRINE_BLOCK.getId().toString())) {
+                if (canInsertAmountIntoOutputSlot(inventory, 9)) {
+                    entity.itemHandler.setStackInSlot(3, new ItemStack(match.get().getResultItem().getItem(),
+                            entity.itemHandler.getStackInSlot(3).getCount() + 9));
+                } else {
+                    return;
+                }
+            } else {
+                entity.itemHandler.setStackInSlot(3, new ItemStack(match.get().getResultItem().getItem(),
+                        entity.itemHandler.getStackInSlot(3).getCount() + 1));
+            }
+
             if (entity.itemHandler.getStackInSlot(2).hurt(1, new Random(), null)) {
                 entity.itemHandler.extractItem(2, 1, false);
             }
-
-            entity.itemHandler.setStackInSlot(3, new ItemStack(match.get().getResultItem().getItem(),
-                    entity.itemHandler.getStackInSlot(3).getCount() + 1));
-
+            entity.itemHandler.extractItem(1, 1, false);
+            entity.itemHandler.extractItem(0, 1, false);
             entity.resetProgress();
         }
     }
@@ -165,8 +192,12 @@ public class GemCuttingStationBlockEntity extends BlockEntity implements MenuPro
         return inventory.getItem(3).getItem() == output.getItem() || inventory.getItem(3).isEmpty();
     }
 
+    private static boolean canInsertAmountIntoOutputSlot(final SimpleContainer inventory, final int amountToAdd) {
+        return inventory.getItem(3).getMaxStackSize() >= (inventory.getItem(3).getCount() + amountToAdd);
+    }
+
     private static boolean canInsertAmountIntoOutputSlot(final SimpleContainer inventory) {
-        return inventory.getItem(3).getMaxStackSize() > inventory.getItem(3).getCount();
+        return inventory.getItem(3).getMaxStackSize() >= inventory.getItem(3).getCount();
     }
 
     @Override
