@@ -34,6 +34,14 @@ public class GemCuttingStationScreen extends AbstractContainerScreen<GemCuttingS
         final int y = (this.height - this.imageHeight) / 2;
 
         this.blit(pPoseStack, x, y, 0, 0, this.imageWidth, this.imageHeight);
+
+        /**
+         * Top left gui to where we draw 0,0 -> 102 + x then down y + 41
+         * 176 pixels to the arrow we have, width is 8, and height is scaled progress (26-x).
+         */
+        if (this.menu.isCrafting()) {
+            this.blit(pPoseStack, x + 102, y + 41, 176, 0, 8, this.menu.getScaledProgress());
+        }
     }
 
     @Override

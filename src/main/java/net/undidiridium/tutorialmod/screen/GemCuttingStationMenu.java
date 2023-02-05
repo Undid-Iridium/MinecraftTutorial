@@ -1,12 +1,9 @@
 package net.undidiridium.tutorialmod.screen;
 
-
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.inventory.ContainerLevelAccess;
-import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -25,28 +22,30 @@ public class GemCuttingStationMenu extends AbstractContainerMenu {
     //  9 - 35 = player inventory slots (which map to the InventoryPlayer slot numbers 9 - 35)
     //  36 - 44 = TileInventory slots, which map to our TileEntity slot numbers 0 - 8)
     private static final int HOTBAR_SLOT_COUNT = 9;
-
-    private static final int VANILLA_FIRST_SLOT_INDEX = 0;
-
     private static final int PLAYER_INVENTORY_ROW_COUNT = 3;
     private static final int PLAYER_INVENTORY_COLUMN_COUNT = 9;
+
+    private static final int VANILLA_FIRST_SLOT_INDEX = 0;
     private static final int PLAYER_INVENTORY_SLOT_COUNT = PLAYER_INVENTORY_COLUMN_COUNT * PLAYER_INVENTORY_ROW_COUNT;
     private static final int VANILLA_SLOT_COUNT = HOTBAR_SLOT_COUNT + PLAYER_INVENTORY_SLOT_COUNT;
     private static final int TE_INVENTORY_FIRST_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT;
     // THIS YOU HAVE TO DEFINE!
-    private static final int TE_INVENTORY_SLOT_COUNT = GemCuttingStationBlockEntity.inventory_size_limit;  // must be the number of slots you have!
+    private static final int TE_INVENTORY_SLOT_COUNT = 4;  // must be the number of slots you have!
     private final GemCuttingStationBlockEntity blockEntity;
     private final Level level;
+    private final ContainerData data;
+
 
     public GemCuttingStationMenu(final int pContainerId, final Inventory inv, final FriendlyByteBuf extraData) {
-        this(pContainerId, inv, inv.player.level.getBlockEntity(extraData.readBlockPos()));
+        this(pContainerId, inv, inv.player.level.getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(2));
     }
 
-    public GemCuttingStationMenu(final int pContainerId, final Inventory inv, final BlockEntity entity) {
+    public GemCuttingStationMenu(final int pContainerId, final Inventory inv, final BlockEntity entity, final ContainerData data) {
         super(ModMenuTypes.GEM_CUTTING_STATION_MENU.get(), pContainerId);
-        AbstractContainerMenu.checkContainerSize(inv, GemCuttingStationBlockEntity.inventory_size_limit);
+        AbstractContainerMenu.checkContainerSize(inv, 4);
         this.blockEntity = ((GemCuttingStationBlockEntity) entity);
         this.level = inv.player.level;
+        this.data = data;
 
         this.addPlayerInventory(inv);
         this.addPlayerHotbar(inv);
@@ -57,6 +56,20 @@ public class GemCuttingStationMenu extends AbstractContainerMenu {
             this.addSlot(new SlotItemHandler(handler, 2, 103, 18));
             this.addSlot(new ModResultSlot(handler, 3, 80, 60));
         });
+
+        this.addDataSlots(data);
+    }
+
+    public boolean isCrafting() {
+        return this.data.get(0) > 0;
+    }
+
+    public int getScaledProgress() {
+        final int progress = this.data.get(0);
+        final int maxProgress = this.data.get(1);  // Max Progress
+        final int progressArrowSize = 26; // This is the height in pixels of your arrow
+
+        return maxProgress != 0 && progress != 0 ? progress * progressArrowSize / maxProgress : 0;
     }
 
     @Override
@@ -101,9 +114,9 @@ public class GemCuttingStationMenu extends AbstractContainerMenu {
     }
 
     private void addPlayerInventory(final Inventory playerInventory) {
-        for (int row = 0; row < 3; ++row) {
-            for (int column = 0; column < 9; ++column) {
-                this.addSlot(new Slot(playerInventory, column + row * 9 + 9, 8 + column * 18, 86 + row * 18));
+        for (int i = 0; i < 3; ++i) {
+            for (int l = 0; l < 9; ++l) {
+                this.addSlot(new Slot(playerInventory, l + i * 9 + 9, 8 + l * 18, 86 + i * 18));
             }
         }
     }
