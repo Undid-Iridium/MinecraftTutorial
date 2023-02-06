@@ -32,6 +32,11 @@ public class GemCuttingStationRecipe implements Recipe<SimpleContainer> {
     }
 
     @Override
+    public NonNullList<Ingredient> getIngredients() {
+        return this.recipeItems;
+    }
+
+    @Override
     public ItemStack assemble(final SimpleContainer pContainer) {
         return this.output;
     }
