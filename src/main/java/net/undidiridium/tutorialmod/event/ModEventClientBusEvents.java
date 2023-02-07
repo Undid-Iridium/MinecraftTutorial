@@ -3,9 +3,12 @@ package net.undidiridium.tutorialmod.event;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
+import net.minecraft.client.renderer.blockentity.SignRenderer;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.loot.GlobalLootModifierSerializer;
 import net.minecraftforge.event.RegistryEvent;
@@ -15,6 +18,8 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.undidiridium.tutorialmod.EbonyRegistration;
 import net.undidiridium.tutorialmod.TutorialMod;
 import net.undidiridium.tutorialmod.block.ModBlocks;
+import net.undidiridium.tutorialmod.block.entity.ModBlockEntities;
+import net.undidiridium.tutorialmod.block.entity.ModWoodTypes;
 import net.undidiridium.tutorialmod.event.loot.CoalCokeFromCreeperAdditionModifier;
 import net.undidiridium.tutorialmod.event.loot.CucumberSeedsFromGrassAdditionModifier;
 import net.undidiridium.tutorialmod.event.loot.DowsingRodInIglooAdditionModifier;
@@ -51,6 +56,9 @@ public class ModEventClientBusEvents {
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.GEM_CUTTING_STATION.get(), RenderType.translucent());
 
         MenuScreens.register(ModMenuTypes.GEM_CUTTING_STATION_MENU.get(), GemCuttingStationScreen::new);
+
+        WoodType.register(ModWoodTypes.EBONY);
+        BlockEntityRenderers.register(ModBlockEntities.SIGN_BLOCK_ENTITIES.get(), SignRenderer::new);
     }
 
     @SubscribeEvent

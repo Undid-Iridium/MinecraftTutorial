@@ -6,6 +6,8 @@
     }
   ],
   "output": {
-    "item": "tutorialmod:citrine"
-  }
+    "item": "tutorialmod:citrine",
+    "count": 9
+  },
+  "quantity": 1
 }

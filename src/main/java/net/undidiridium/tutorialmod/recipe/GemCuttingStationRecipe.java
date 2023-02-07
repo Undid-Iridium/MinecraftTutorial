@@ -18,12 +18,14 @@ public class GemCuttingStationRecipe implements Recipe<SimpleContainer> {
     private final ResourceLocation id;
     private final ItemStack output;
     private final NonNullList<Ingredient> recipeItems;
+    private final int quantityOfItemsToOutput;
 
     public GemCuttingStationRecipe(final ResourceLocation id, final ItemStack output,
-                                   final NonNullList<Ingredient> recipeItems) {
+                                   final NonNullList<Ingredient> recipeItems, final int qty) {
         this.id = id;
         this.output = output;
         this.recipeItems = recipeItems;
+        this.quantityOfItemsToOutput = qty;
     }
 
     @Override
@@ -34,6 +36,10 @@ public class GemCuttingStationRecipe implements Recipe<SimpleContainer> {
     @Override
     public NonNullList<Ingredient> getIngredients() {
         return this.recipeItems;
+    }
+
+    public int getTotalItemsToOutput() {
+        return this.quantityOfItemsToOutput;
     }
 
     @Override
@@ -87,6 +93,7 @@ public class GemCuttingStationRecipe implements Recipe<SimpleContainer> {
         @Override
         public void toNetwork(final FriendlyByteBuf buf, final GemCuttingStationRecipe recipe) {
             buf.writeInt(recipe.getIngredients().size());
+            buf.writeInt(recipe.getTotalItemsToOutput());
             for (final Ingredient ing : recipe.getIngredients()) {
                 ing.toNetwork(buf);
             }
@@ -96,7 +103,7 @@ public class GemCuttingStationRecipe implements Recipe<SimpleContainer> {
         @Override
         public GemCuttingStationRecipe fromJson(final ResourceLocation id, final JsonObject json) {
             final ItemStack output = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(json, "output"));
-
+            final int qty = GsonHelper.getAsInt(json, "quantity");
             final JsonArray ingredients = GsonHelper.getAsJsonArray(json, "ingredients");
             final NonNullList<Ingredient> inputs = NonNullList.withSize(1, Ingredient.EMPTY);
 
@@ -104,19 +111,19 @@ public class GemCuttingStationRecipe implements Recipe<SimpleContainer> {
                 inputs.set(i, Ingredient.fromJson(ingredients.get(i)));
             }
 
-            return new GemCuttingStationRecipe(id, output, inputs);
+            return new GemCuttingStationRecipe(id, output, inputs, qty);
         }
 
         @Override
         public GemCuttingStationRecipe fromNetwork(final ResourceLocation id, final FriendlyByteBuf buf) {
             final NonNullList<Ingredient> inputs = NonNullList.withSize(buf.readInt(), Ingredient.EMPTY);
-
+            final int qty = buf.readInt();
             for (int i = 0; i < inputs.size(); i++) {
                 inputs.set(i, Ingredient.fromNetwork(buf));
             }
 
             final ItemStack output = buf.readItem();
-            return new GemCuttingStationRecipe(id, output, inputs);
+            return new GemCuttingStationRecipe(id, output, inputs, qty);
         }
 
         @Override

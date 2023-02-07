@@ -1,6 +1,7 @@
 package net.undidiridium.tutorialmod;
 
 import com.mojang.logging.LogUtils;
+import net.minecraft.client.renderer.Sheets;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerPotBlock;
@@ -12,6 +13,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.undidiridium.tutorialmod.block.ModBlocks;
 import net.undidiridium.tutorialmod.block.entity.ModBlockEntities;
+import net.undidiridium.tutorialmod.block.entity.ModWoodTypes;
 import net.undidiridium.tutorialmod.effect.ModEffects;
 import net.undidiridium.tutorialmod.item.ModItems;
 import net.undidiridium.tutorialmod.painting.ModPaintings;
@@ -57,7 +59,8 @@ public class TutorialMod {
 
         event_bus.addListener(TutorialMod::setup);
 
-        //event_bus.addListener(this::clientSetup); Incorrect, do not do this due to this class being called for server/client
+        //event_bus.addListener(this::clientSetup); Incorrect, do not do this due to this class being called for
+        // server/client
 
 
         MinecraftForge.EVENT_BUS.register(this);
@@ -70,7 +73,10 @@ public class TutorialMod {
         event.enqueueWork(() -> {
             ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.PINK_ROSE.getId(), ModBlocks.POTTED_PINK_ROSE);
 
-            BrewingRecipeRegistry.addRecipe(new BetterBrewingRecipe(Potions.AWKWARD, ModItems.CITRINE.get(), ModPotions.FREEZE_POTION.get()));
+            BrewingRecipeRegistry.addRecipe(new BetterBrewingRecipe(Potions.AWKWARD, ModItems.CITRINE.get(),
+                    ModPotions.FREEZE_POTION.get()));
+
+            Sheets.addWoodType(ModWoodTypes.EBONY);
         });
     }
 
@@ -78,7 +84,8 @@ public class TutorialMod {
 //    private void enqueueIMC(final InterModEnqueueEvent event)
 //    {
 //        // Some example code to dispatch IMC to another mod
-//        InterModComms.sendTo("examplemod", "helloworld", () -> { LOGGER.info("Hello world from the MDK"); return "Hello world";});
+//        InterModComms.sendTo("examplemod", "helloworld", () -> { LOGGER.info("Hello world from the MDK"); return
+//        "Hello world";});
 //    }
 //
 //    private void processIMC(final InterModProcessEvent event)
@@ -97,7 +104,8 @@ public class TutorialMod {
 //        LOGGER.info("HELLO from server starting");
 //    }
 //
-//    // You can use EventBusSubscriber to automatically subscribe events on the contained class (this is subscribing to the MOD
+//    // You can use EventBusSubscriber to automatically subscribe events on the contained class (this is subscribing
+//    to the MOD
 //    // Event bus for receiving Registry Events)
 //    @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 //    public static class RegistryEvents
