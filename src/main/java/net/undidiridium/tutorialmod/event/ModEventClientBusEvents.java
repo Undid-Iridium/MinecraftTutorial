@@ -1,5 +1,6 @@
 package net.undidiridium.tutorialmod.event;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
@@ -10,6 +11,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.event.ParticleFactoryRegisterEvent;
 import net.minecraftforge.common.loot.GlobalLootModifierSerializer;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -23,6 +25,8 @@ import net.undidiridium.tutorialmod.block.entity.ModWoodTypes;
 import net.undidiridium.tutorialmod.event.loot.CoalCokeFromCreeperAdditionModifier;
 import net.undidiridium.tutorialmod.event.loot.CucumberSeedsFromGrassAdditionModifier;
 import net.undidiridium.tutorialmod.event.loot.DowsingRodInIglooAdditionModifier;
+import net.undidiridium.tutorialmod.particle.ModParticles;
+import net.undidiridium.tutorialmod.particle.custom.CitrineParticles;
 import net.undidiridium.tutorialmod.recipe.GemCuttingStationRecipe;
 import net.undidiridium.tutorialmod.screen.GemCuttingStationScreen;
 import net.undidiridium.tutorialmod.screen.ModMenuTypes;
@@ -64,6 +68,12 @@ public class ModEventClientBusEvents {
     @SubscribeEvent
     public static void registerRecipeTypes(final RegistryEvent.Register<RecipeSerializer<?>> event) {
         Registry.register(Registry.RECIPE_TYPE, GemCuttingStationRecipe.Type.ID, GemCuttingStationRecipe.Type.INSTANCE);
+    }
+
+    @SubscribeEvent
+    public static void registerParticleFactories(final ParticleFactoryRegisterEvent event) {
+        Minecraft.getInstance().particleEngine.register(ModParticles.CITRINE_PARTICLES.get(),
+                CitrineParticles.Provider::new);
     }
 
     @SubscribeEvent

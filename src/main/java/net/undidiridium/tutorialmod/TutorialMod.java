@@ -17,6 +17,7 @@ import net.undidiridium.tutorialmod.block.entity.ModWoodTypes;
 import net.undidiridium.tutorialmod.effect.ModEffects;
 import net.undidiridium.tutorialmod.item.ModItems;
 import net.undidiridium.tutorialmod.painting.ModPaintings;
+import net.undidiridium.tutorialmod.particle.ModParticles;
 import net.undidiridium.tutorialmod.potion.ModPotions;
 import net.undidiridium.tutorialmod.recipe.ModRecipes;
 import net.undidiridium.tutorialmod.screen.ModMenuTypes;
@@ -55,6 +56,7 @@ public class TutorialMod {
         ModPotions.register(event_bus);
         ModEffects.register(event_bus);
         ModRecipes.register(event_bus);
+        ModParticles.register(event_bus);
 
 
         event_bus.addListener(TutorialMod::setup);
