@@ -25,6 +25,7 @@ import net.undidiridium.tutorialmod.block.entity.ModWoodTypes;
 import net.undidiridium.tutorialmod.event.loot.CoalCokeFromCreeperAdditionModifier;
 import net.undidiridium.tutorialmod.event.loot.CucumberSeedsFromGrassAdditionModifier;
 import net.undidiridium.tutorialmod.event.loot.DowsingRodInIglooAdditionModifier;
+import net.undidiridium.tutorialmod.fluid.ModFluids;
 import net.undidiridium.tutorialmod.particle.ModParticles;
 import net.undidiridium.tutorialmod.particle.custom.CitrineParticles;
 import net.undidiridium.tutorialmod.recipe.GemCuttingStationRecipe;
@@ -63,6 +64,10 @@ public class ModEventClientBusEvents {
 
         WoodType.register(ModWoodTypes.EBONY);
         BlockEntityRenderers.register(ModBlockEntities.SIGN_BLOCK_ENTITIES.get(), SignRenderer::new);
+
+        ItemBlockRenderTypes.setRenderLayer(ModFluids.HONEY_BLOCK.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(ModFluids.HONEY_FLUID.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(ModFluids.HONEY_FLOWING.get(), RenderType.translucent());
     }
 
     @SubscribeEvent

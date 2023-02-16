@@ -9,6 +9,7 @@ import net.minecraftforge.registries.RegistryObject;
 import net.undidiridium.tutorialmod.EbonyRegistration;
 import net.undidiridium.tutorialmod.TutorialMod;
 import net.undidiridium.tutorialmod.block.ModBlocks;
+import net.undidiridium.tutorialmod.fluid.ModFluids;
 import net.undidiridium.tutorialmod.item.custom.*;
 import net.undidiridium.tutorialmod.sound.ModSounds;
 
@@ -103,6 +104,10 @@ public class ModItems {
     public static final RegistryObject<Item> EBONY_SIGN = ITEMS.register("ebony_sign",
             () -> new SignItem(new Item.Properties().tab(ModCreativeModeTab.TUTORIAL_TAB).stacksTo(16),
                     EbonyRegistration.EBONY_SIGN.get(), EbonyRegistration.EBONY_WALL_SIGN.get()));
+
+    public static final RegistryObject<Item> HONEY_BUCKET = ITEMS.register("honey_bucket",
+            () -> new BucketItem(ModFluids.HONEY_FLUID,
+                    new Item.Properties().tab(ModCreativeModeTab.TUTORIAL_TAB).stacksTo(1)));
 
     /**
      * Called in tutorial mod to register

@@ -15,6 +15,7 @@ import net.undidiridium.tutorialmod.block.ModBlocks;
 import net.undidiridium.tutorialmod.block.entity.ModBlockEntities;
 import net.undidiridium.tutorialmod.block.entity.ModWoodTypes;
 import net.undidiridium.tutorialmod.effect.ModEffects;
+import net.undidiridium.tutorialmod.fluid.ModFluids;
 import net.undidiridium.tutorialmod.item.ModItems;
 import net.undidiridium.tutorialmod.painting.ModPaintings;
 import net.undidiridium.tutorialmod.particle.ModParticles;
@@ -57,7 +58,7 @@ public class TutorialMod {
         ModEffects.register(event_bus);
         ModRecipes.register(event_bus);
         ModParticles.register(event_bus);
-
+        ModFluids.register(event_bus);
 
         event_bus.addListener(TutorialMod::setup);
 
