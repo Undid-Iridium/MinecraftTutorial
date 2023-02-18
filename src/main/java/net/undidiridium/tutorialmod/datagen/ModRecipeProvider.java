@@ -53,6 +53,10 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_citrine_ore", RecipeProvider.inventoryTrigger(ItemPredicate.Builder.item()
                         .of(ModBlocks.CITRINE_ORE.get()).build())).save(pFinishedRecipeConsumer);
 
+        new GemCuttingRecipeBuilder(ModBlocks.CITRINE_BLOCK.get(), ModItems.MAGIC_DUST.get(), 9)
+                .unlockedBy("has_citrine_block", RecipeProvider.inventoryTrigger(ItemPredicate.Builder.item()
+                        .of(ModBlocks.CITRINE_BLOCK.get()).build())).save(pFinishedRecipeConsumer);
+
         //Should automatically use resources from generated main
     }
 }

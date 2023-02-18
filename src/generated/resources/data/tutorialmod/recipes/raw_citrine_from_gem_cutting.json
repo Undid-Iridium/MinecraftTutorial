@@ -6,6 +6,7 @@
     }
   ],
   "output": {
-    "item": "tutorialmod:raw_citrine"
+    "item": "tutorialmod:raw_citrine",
+    "count": 1
   }
 }

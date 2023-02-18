@@ -89,7 +89,7 @@ public class GemCuttingRecipeBuilder implements RecipeBuilder {
             pJson.add("ingredients", jsonarray);
             final JsonObject jsonobject = new JsonObject();
             jsonobject.addProperty("item", this.result.getRegistryName().toString());
-            if (this.count > 1) {
+            if (this.count >= 1) {
                 jsonobject.addProperty("count", this.count);
             }
 

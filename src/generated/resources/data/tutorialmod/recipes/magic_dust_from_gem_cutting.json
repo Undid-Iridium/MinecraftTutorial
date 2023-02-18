@@ -1,0 +1,12 @@
+{
+  "type": "tutorialmod:gem_cutting",
+  "ingredients": [
+    {
+      "item": "tutorialmod:citrine_block"
+    }
+  ],
+  "output": {
+    "item": "tutorialmod:magic_dust",
+    "count": 9
+  }
+}

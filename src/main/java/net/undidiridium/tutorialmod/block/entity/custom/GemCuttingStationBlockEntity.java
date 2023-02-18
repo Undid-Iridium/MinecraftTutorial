@@ -175,7 +175,7 @@ public class GemCuttingStationBlockEntity extends BlockEntity implements MenuPro
         final Optional<GemCuttingStationRecipe> match = level.getRecipeManager()
                 .getRecipeFor(GemCuttingStationRecipe.Type.INSTANCE, inventory, level);
 
-        return match.isPresent() && canInsertAmountIntoOutputSlot(inventory, 1)
+        return match.isPresent() && canInsertAmountIntoOutputSlot(inventory, match.get().getResultItem().getCount())
                 && canInsertItemIntoOutputSlot(inventory, match.get().getResultItem())
                 && (hasWaterInWaterSlot(entity) || hasWaterNextToEntity(entity)) && hasToolsInToolSlot(entity);
     }

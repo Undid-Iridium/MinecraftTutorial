@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "tutorialmod:magic_dust"
+    ]
+  },
+  "criteria": {
+    "has_citrine_block": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "tutorialmod:citrine_block"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "tutorialmod:magic_dust"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_citrine_block",
+      "has_the_recipe"
+    ]
+  ]
+}
