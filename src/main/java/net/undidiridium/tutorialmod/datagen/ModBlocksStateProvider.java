@@ -11,6 +11,7 @@ import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
+import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.undidiridium.tutorialmod.EbonyRegistration;
 import net.undidiridium.tutorialmod.TutorialMod;
@@ -106,6 +107,21 @@ public class ModBlocksStateProvider extends BlockStateProvider {
 
     }
 
+
+    /**
+     * 1.19 solution to issue with getRegistryName going away
+     *
+     * @param block
+     */
+    private void simpleBlockWithItem(final Block block) {
+
+        final String blockName = ForgeRegistries.BLOCKS.getKey(block).getPath();
+
+        this.simpleBlock(block);
+
+        this.itemModels().withExistingParent(blockName, new ResourceLocation(TutorialMod.MOD_ID, "block/" + blockName));
+
+    }
 
     protected BlockModelBuilder block(final BlockItem blockItem) {
 

@@ -23,7 +23,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         this.handheldItem(ModItems.CITRINE_PICKAXE.get());
         this.handheldItem(ModItems.CITRINE_SWORD.get());
         this.handheldItem(ModItems.CITRINE_HOE.get());
-        this.handheldItem(ModItems.CITRINE_STAFF.get());
+//        this.customHandHeldItem(ModItems.CITRINE_STAFF.get());
 
 
         this.simpleItem(ModItems.COAL_COKE.get());
@@ -51,6 +51,11 @@ public class ModItemModelProvider extends ItemModelProvider {
         return this.withExistingParent(item.getRegistryName().getPath(),
                 new ResourceLocation("item/generated")).texture("layer0",
                 new ResourceLocation(TutorialMod.MOD_ID, "item/" + item.getRegistryName().getPath()));
+    }
+
+    private ItemModelBuilder customHandHeldItem(final Item item) {
+        return this.withExistingParent(item.getRegistryName().getPath(),
+                new ResourceLocation("item/handheld"));
     }
 
     private ItemModelBuilder handheldItem(final Item item) {

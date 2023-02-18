@@ -18,5 +18,6 @@ public class DataGenerators {
         generator.addProvider(new ModLootTableProvider(generator));
         generator.addProvider(new ModBlocksStateProvider(generator, existingFileHelper));
         generator.addProvider(new ModItemModelProvider(generator, existingFileHelper));
+        //generator.run incase something weird happens
     }
 }
