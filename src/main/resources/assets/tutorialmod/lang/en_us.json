@@ -66,5 +66,7 @@
   "item.tutorialmod.gem_cutter_tool": "Gem Cutter Tool",
   "block.tutorialmod.gem_cutting_station": "Gem Cutting Station",
   "block.tutorialmod.ebony_sign": "Ebony Sign",
-  "item.tutorialmod.honey_bucket": "Honey Bucket"
+  "item.tutorialmod.honey_bucket": "Honey Bucket",
+  "enchantment.tutorialmod.lightning_striker": "Lightning Striker",
+  "enchantment.tutorialmod.float_enchant": "Float enchantment"
 }
