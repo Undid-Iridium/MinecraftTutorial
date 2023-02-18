@@ -23,6 +23,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         this.handheldItem(ModItems.CITRINE_PICKAXE.get());
         this.handheldItem(ModItems.CITRINE_SWORD.get());
         this.handheldItem(ModItems.CITRINE_HOE.get());
+        this.handheldItem(ModItems.CITRINE_STAFF.get());
+
 
         this.simpleItem(ModItems.COAL_COKE.get());
         this.simpleItem(ModItems.CUCUMBER.get());
