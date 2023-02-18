@@ -2,16 +2,21 @@ package net.undidiridium.tutorialmod.datagen;
 
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.client.model.generators.BlockModelBuilder;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
+import net.minecraftforge.registries.RegistryObject;
 import net.undidiridium.tutorialmod.EbonyRegistration;
 import net.undidiridium.tutorialmod.TutorialMod;
 import net.undidiridium.tutorialmod.block.ModBlocks;
 import net.undidiridium.tutorialmod.block.custom.CucumberPlantBlock;
+import net.undidiridium.tutorialmod.item.ModItems;
 
 import java.util.function.Function;
 
@@ -85,6 +90,28 @@ public class ModBlocksStateProvider extends BlockStateProvider {
                 this.flowerPotCross(ModBlocks.POTTED_PINK_ROSE.get().getRegistryName().getPath()));
 
         this.makeCrop((CucumberPlantBlock) ModBlocks.CUCUMBER_PLANT.get(), "cucumber_stage", "cucumber_stage");
+    }
+
+    protected void registerModels() {
+
+        for (final RegistryObject<Item> entry : ModItems.ITEMS.getEntries()) {
+
+            if (entry.get() instanceof BlockItem blockItem) {
+
+                this.block(blockItem);
+
+            }
+
+        }
+
+    }
+
+
+    protected BlockModelBuilder block(final BlockItem blockItem) {
+
+        return this.models().withExistingParent(blockItem.getRegistryName().getPath(),
+                TutorialMod.MOD_ID + ":block/" + blockItem.getBlock().getRegistryName().getPath());
+
     }
 
     public ModelFile flowerPotCross(final String name) {
