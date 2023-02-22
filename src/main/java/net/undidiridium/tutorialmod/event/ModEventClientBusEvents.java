@@ -6,6 +6,7 @@ import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.blockentity.SignRenderer;
+import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.RecipeSerializer;
@@ -14,6 +15,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.ParticleFactoryRegisterEvent;
 import net.minecraftforge.common.loot.GlobalLootModifierSerializer;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -22,6 +24,9 @@ import net.undidiridium.tutorialmod.TutorialMod;
 import net.undidiridium.tutorialmod.block.ModBlocks;
 import net.undidiridium.tutorialmod.block.entity.ModBlockEntities;
 import net.undidiridium.tutorialmod.block.entity.ModWoodTypes;
+import net.undidiridium.tutorialmod.entity.ModEntityTypes;
+import net.undidiridium.tutorialmod.entity.client.RaccoonRenderer;
+import net.undidiridium.tutorialmod.entity.custom.RaccoonEntity;
 import net.undidiridium.tutorialmod.event.loot.CoalCokeFromCreeperAdditionModifier;
 import net.undidiridium.tutorialmod.event.loot.CucumberSeedsFromGrassAdditionModifier;
 import net.undidiridium.tutorialmod.event.loot.DowsingRodInIglooAdditionModifier;
@@ -68,6 +73,8 @@ public class ModEventClientBusEvents {
         ItemBlockRenderTypes.setRenderLayer(ModFluids.HONEY_BLOCK.get(), RenderType.translucent());
         ItemBlockRenderTypes.setRenderLayer(ModFluids.HONEY_FLUID.get(), RenderType.translucent());
         ItemBlockRenderTypes.setRenderLayer(ModFluids.HONEY_FLOWING.get(), RenderType.translucent());
+
+        EntityRenderers.register(ModEntityTypes.RACCOON.get(), RaccoonRenderer::new);
     }
 
     @SubscribeEvent
@@ -92,5 +99,10 @@ public class ModEventClientBusEvents {
                 new CoalCokeFromCreeperAdditionModifier.Serializer().setRegistryName
                         (new ResourceLocation(TutorialMod.MOD_ID, "coal_coke_from_creeper"))
         );
+    }
+
+    @SubscribeEvent
+    public static void entityAttributeEvent(final EntityAttributeCreationEvent event) {
+        event.put(ModEntityTypes.RACCOON.get(), RaccoonEntity.setAttributes());
     }
 }

@@ -30,15 +30,17 @@ public class GemCuttingStationRecipeCategory implements IRecipeCategory<GemCutti
 
     public GemCuttingStationRecipeCategory(final IGuiHelper helper) {
         this.background = helper.createDrawable(TEXTURE, 0, 0, 176, 85);
-        this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM,
+        this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK,
                 new ItemStack(ModBlocks.GEM_CUTTING_STATION.get()));
     }
 
+    @SuppressWarnings("removal")
     @Override
     public ResourceLocation getUid() {
         return UID;
     }
 
+    @SuppressWarnings("removal")
     @Override
     public Class<? extends GemCuttingStationRecipe> getRecipeClass() {
         return GemCuttingStationRecipe.class;

@@ -16,6 +16,7 @@ import net.undidiridium.tutorialmod.block.entity.ModBlockEntities;
 import net.undidiridium.tutorialmod.block.entity.ModWoodTypes;
 import net.undidiridium.tutorialmod.effect.ModEffects;
 import net.undidiridium.tutorialmod.enchantment.ModEnchantments;
+import net.undidiridium.tutorialmod.entity.ModEntityTypes;
 import net.undidiridium.tutorialmod.fluid.ModFluids;
 import net.undidiridium.tutorialmod.item.ModItems;
 import net.undidiridium.tutorialmod.painting.ModPaintings;
@@ -26,6 +27,7 @@ import net.undidiridium.tutorialmod.screen.ModMenuTypes;
 import net.undidiridium.tutorialmod.sound.ModSounds;
 import net.undidiridium.tutorialmod.util.BetterBrewingRecipe;
 import org.slf4j.Logger;
+import software.bernie.geckolib3.GeckoLib;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(TutorialMod.MOD_ID)
@@ -61,13 +63,14 @@ public class TutorialMod {
         ModParticles.register(event_bus);
         ModFluids.register(event_bus);
         ModEnchantments.register(event_bus);
-
+        ModEntityTypes.register(event_bus);
 
         event_bus.addListener(TutorialMod::setup);
 
         //event_bus.addListener(this::clientSetup); Incorrect, do not do this due to this class being called for
         // server/client
 
+        GeckoLib.initialize();
 
         MinecraftForge.EVENT_BUS.register(this);
     }

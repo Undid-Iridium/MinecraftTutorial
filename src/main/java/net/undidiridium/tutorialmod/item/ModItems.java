@@ -2,6 +2,7 @@ package net.undidiridium.tutorialmod.item;
 
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.*;
+import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -9,6 +10,7 @@ import net.minecraftforge.registries.RegistryObject;
 import net.undidiridium.tutorialmod.EbonyRegistration;
 import net.undidiridium.tutorialmod.TutorialMod;
 import net.undidiridium.tutorialmod.block.ModBlocks;
+import net.undidiridium.tutorialmod.entity.ModEntityTypes;
 import net.undidiridium.tutorialmod.fluid.ModFluids;
 import net.undidiridium.tutorialmod.item.custom.*;
 import net.undidiridium.tutorialmod.sound.ModSounds;
@@ -108,6 +110,10 @@ public class ModItems {
     public static final RegistryObject<Item> HONEY_BUCKET = ITEMS.register("honey_bucket",
             () -> new BucketItem(ModFluids.HONEY_FLUID,
                     new Item.Properties().tab(ModCreativeModeTab.TUTORIAL_TAB).stacksTo(1)));
+
+    public static final RegistryObject<Item> RACCOON_SPAWN_EGG = ITEMS.register("raccoon_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntityTypes.RACCOON, 0x948e8d, 0x3b3635,
+                    new Item.Properties().tab(ModCreativeModeTab.TUTORIAL_TAB)));
 
     /**
      * Called in tutorial mod to register
