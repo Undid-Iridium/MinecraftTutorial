@@ -99,6 +99,10 @@ public class GemCuttingStationRecipe implements Recipe<SimpleContainer> {
         }
 
         @Override
+        /**
+         * Reads in the size of the ingredients, then the output item, then creates a new recipe
+         * https://youtu.be/ru6Gkvy9tyU?list=PLKGarocXCE1Hut51TKKqZKqVZtKLZC48x&t=224
+         */
         public GemCuttingStationRecipe fromNetwork(final ResourceLocation id, final FriendlyByteBuf buf) {
             final NonNullList<Ingredient> inputs = NonNullList.withSize(buf.readInt(), Ingredient.EMPTY);
 
@@ -111,6 +115,10 @@ public class GemCuttingStationRecipe implements Recipe<SimpleContainer> {
         }
 
         @Override
+        /**
+         * Writes our content from client to server where we send int of size of data
+         * then the ingredients then we write the recipe result item
+         */
         public void toNetwork(final FriendlyByteBuf buf, final GemCuttingStationRecipe recipe) {
             buf.writeInt(recipe.getIngredients().size());
             for (final Ingredient ing : recipe.getIngredients()) {

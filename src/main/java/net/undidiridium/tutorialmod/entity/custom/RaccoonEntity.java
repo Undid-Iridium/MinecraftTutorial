@@ -26,6 +26,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.scores.Team;
 import net.minecraftforge.event.ForgeEventFactory;
+import net.undidiridium.tutorialmod.entity.ModEntityTypes;
+import net.undidiridium.tutorialmod.item.ModItems;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
@@ -58,6 +60,7 @@ public class RaccoonEntity extends TamableAnimal implements IAnimatable {
         this.goalSelector.addGoal(1, new FloatGoal(this));
         this.goalSelector.addGoal(1, new SitWhenOrderedToGoal(this));
         this.goalSelector.addGoal(2, new PanicGoal(this, 1.25D));
+        this.goalSelector.addGoal(2, new BreedGoal(this, 1.0D));
         this.goalSelector.addGoal(3, new LookAtPlayerGoal(this, Player.class, 8.0F));
         this.goalSelector.addGoal(3, new FollowOwnerGoal(this, 1.0D, 10.0F, 2.0F, false));
 
@@ -68,8 +71,13 @@ public class RaccoonEntity extends TamableAnimal implements IAnimatable {
 
     @Nullable
     @Override
-    public AgeableMob getBreedOffspring(ServerLevel p_146743_, AgeableMob p_146744_) {
-        return null;
+    public AgeableMob getBreedOffspring(ServerLevel serverLevel, AgeableMob mob) {
+        return ModEntityTypes.RACCOON.get().create(serverLevel);
+    }
+
+    @Override
+    public boolean isFood(ItemStack pStack) {
+        return pStack.getItem() == ModItems.CUCUMBER.get();
     }
 
     private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
@@ -128,6 +136,10 @@ public class RaccoonEntity extends TamableAnimal implements IAnimatable {
         Item item = itemstack.getItem();
 
         Item itemForTaming = Items.APPLE;
+
+        if (isFood(itemstack)) {
+            return super.mobInteract(player, hand);
+        }
 
         if (item == itemForTaming && !isTame()) {
             if (this.level.isClientSide) {

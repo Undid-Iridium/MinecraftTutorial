@@ -182,6 +182,8 @@ public class GemCuttingStationBlockEntity extends BlockEntity implements MenuPro
 
     private static boolean hasWaterNextToEntity(final GemCuttingStationBlockEntity entity) {
 //        entity.worldPosition.north();
+        //Can be reduced to a generic function that takes hash table and checks material against it
+        //AKA if(!material_types[entity.level.getBlockState.North..getMaterial())) return false for all 6
         if (entity.level.getBlockState(entity.worldPosition.north()).getMaterial() == Material.WATER) {
             return true;
         }
@@ -197,11 +199,7 @@ public class GemCuttingStationBlockEntity extends BlockEntity implements MenuPro
         if (entity.level.getBlockState(entity.worldPosition.above()).getMaterial() == Material.WATER) {
             return true;
         }
-        if (entity.level.getBlockState(entity.worldPosition.below()).getMaterial() == Material.WATER) {
-            return true;
-        }
-
-        return false;
+        return entity.level.getBlockState(entity.worldPosition.below()).getMaterial() == Material.WATER;
     }
 
     private static boolean hasWaterInWaterSlot(final GemCuttingStationBlockEntity entity) {
