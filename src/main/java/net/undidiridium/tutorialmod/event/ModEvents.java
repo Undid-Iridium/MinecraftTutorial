@@ -11,6 +11,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.undidiridium.tutorialmod.TutorialMod;
 import net.undidiridium.tutorialmod.item.ModItems;
+import net.undidiridium.tutorialmod.villager.ModVillagers;
 
 import java.util.List;
 
@@ -35,6 +36,16 @@ public class ModEvents {
 
             trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(
                     new ItemStack(Items.EMERALD, 12),
+                    stack, 4, 12, 0.09F));
+        }
+
+        if (event.getType() == ModVillagers.GEM_CUTTER.get()) {
+            Int2ObjectMap<List<VillagerTrades.ItemListing>> trades = event.getTrades();
+            ItemStack stack = new ItemStack(ModItems.CITRINE.get(), 1);
+            int villagerLevel = 1;
+
+            trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(
+                    new ItemStack(Items.EMERALD, 5),
                     stack, 4, 12, 0.09F));
         }
     }

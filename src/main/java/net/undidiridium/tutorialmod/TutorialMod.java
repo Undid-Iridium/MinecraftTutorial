@@ -29,6 +29,7 @@ import net.undidiridium.tutorialmod.recipe.ModRecipes;
 import net.undidiridium.tutorialmod.screen.ModMenuTypes;
 import net.undidiridium.tutorialmod.sound.ModSounds;
 import net.undidiridium.tutorialmod.util.BetterBrewingRecipe;
+import net.undidiridium.tutorialmod.villager.ModVillagers;
 import org.slf4j.Logger;
 import software.bernie.geckolib3.GeckoLib;
 
@@ -67,6 +68,7 @@ public class TutorialMod {
         ModFluids.register(event_bus);
         ModEnchantments.register(event_bus);
         ModEntityTypes.register(event_bus);
+        ModVillagers.register(event_bus);
         // Add in setup method
 
         event_bus.addListener(TutorialMod::setup);
@@ -96,6 +98,7 @@ public class TutorialMod {
                     Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
                     Animal::checkAnimalSpawnRules);
 
+            ModVillagers.registerPOIs();
         });
     }
 
