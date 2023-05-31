@@ -5,6 +5,7 @@ import net.minecraft.data.worldgen.features.FeatureUtils;
 import net.minecraft.data.worldgen.features.OreFeatures;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.util.valueproviders.ConstantInt;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.WeightedPlacedFeature;
@@ -30,11 +31,12 @@ public class ModConfiguredFeatures {
                     new StraightTrunkPlacer(5, 6, 3),
                     BlockStateProvider.simple(EbonyRegistration.EBONY_LEAVES.get()),
                     new BlobFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0), 4),
-                    new TwoLayersFeatureSize(1, 0, 2)).build());
+                    new TwoLayersFeatureSize(1, 0, 2)).dirt(BlockStateProvider.simple(Blocks.END_STONE)).build());
 
     /**
      * CF (configured feature) -> PF (placed feature) -> CF -> PF
-     * Checks if the sapling would survive here, checks if a sapling could survive in this location then you can spawn tree (PF)
+     * Checks if the sapling would survive here, checks if a sapling could survive in this location then you can
+     * spawn tree (PF)
      */
     public static final Holder<PlacedFeature> EBONY_CHECKED = PlacementUtils.register("ebony_checked", EBONY_TREE,
             PlacementUtils.filteredByBlockSurvival(EbonyRegistration.EBONY_SAPLING.get()));
@@ -61,10 +63,13 @@ public class ModConfiguredFeatures {
      * Same for deepslate.
      */
     public static final List<OreConfiguration.TargetBlockState> OVERWORLD_CITRINE_ORES = List.of(
-            OreConfiguration.target(OreFeatures.STONE_ORE_REPLACEABLES, ModBlocks.CITRINE_ORE.get().defaultBlockState()),
-            OreConfiguration.target(OreFeatures.DEEPSLATE_ORE_REPLACEABLES, ModBlocks.DEEPSLATE_CITRINE_ORE.get().defaultBlockState()));
+            OreConfiguration.target(OreFeatures.STONE_ORE_REPLACEABLES,
+                    ModBlocks.CITRINE_ORE.get().defaultBlockState()),
+            OreConfiguration.target(OreFeatures.DEEPSLATE_ORE_REPLACEABLES,
+                    ModBlocks.DEEPSLATE_CITRINE_ORE.get().defaultBlockState()));
 
-    public static final Holder<ConfiguredFeature<OreConfiguration, ?>> CITRINE_ORE = FeatureUtils.register("citrine_ore",
+    public static final Holder<ConfiguredFeature<OreConfiguration, ?>> CITRINE_ORE = FeatureUtils.register(
+            "citrine_ore",
             Feature.ORE, new OreConfiguration(OVERWORLD_CITRINE_ORES, 9));
 
 }

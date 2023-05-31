@@ -6,17 +6,19 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.LeavesBlock;
-import net.minecraft.world.level.block.SaplingBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.registries.RegistryObject;
 import net.undidiridium.tutorialmod.block.ModBlocks;
 import net.undidiridium.tutorialmod.block.custom.ModFlammableRotatedPillarBlock;
+import net.undidiridium.tutorialmod.block.custom.ModSaplingBlock;
 import net.undidiridium.tutorialmod.block.custom.ModStandingSignBlock;
 import net.undidiridium.tutorialmod.block.custom.ModWallSignBlock;
 import net.undidiridium.tutorialmod.block.entity.ModWoodTypes;
 import net.undidiridium.tutorialmod.item.ModCreativeModeTab;
 import net.undidiridium.tutorialmod.world.feature.tree.EbonyTreeGrower;
+
+import java.util.Set;
 
 public class EbonyRegistration {
 
@@ -75,8 +77,10 @@ public class EbonyRegistration {
             }, ModCreativeModeTab.TUTORIAL_TAB);
 
     public static final RegistryObject<Block> EBONY_SAPLING = ModBlocks.registerBlock("ebony_sapling",
-            () -> new SaplingBlock(new EbonyTreeGrower(),
-                    BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)), ModCreativeModeTab.TUTORIAL_TAB);
+            () -> new ModSaplingBlock(new EbonyTreeGrower(),
+                    BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING), () -> Set.of(Blocks.END_STONE,
+                    Blocks.CYAN_CONCRETE)),
+            ModCreativeModeTab.TUTORIAL_TAB);
 
     public static final RegistryObject<Block> EBONY_WALL_SIGN = ModBlocks.registerBlockWithoutBlockItem(
             "ebony_wall_sign",
