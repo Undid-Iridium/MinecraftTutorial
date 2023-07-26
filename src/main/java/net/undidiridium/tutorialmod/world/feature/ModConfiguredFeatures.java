@@ -18,6 +18,7 @@ import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraft.world.level.levelgen.structure.templatesystem.BlockMatchTest;
 import net.undidiridium.tutorialmod.EbonyRegistration;
 import net.undidiridium.tutorialmod.block.ModBlocks;
+import net.undidiridium.tutorialmod.config.TutorialModCommonConfigs;
 
 import java.util.List;
 
@@ -77,7 +78,8 @@ public class ModConfiguredFeatures {
 
     public static final Holder<ConfiguredFeature<OreConfiguration, ?>> CITRINE_ORE = FeatureUtils.register(
             "citrine_ore",
-            Feature.ORE, new OreConfiguration(OVERWORLD_CITRINE_ORES, 9));
+            Feature.ORE, new OreConfiguration(OVERWORLD_CITRINE_ORES,
+                    TutorialModCommonConfigs.CITRINE_ORE_VEIN_SIZE.get()));
     public static final Holder<ConfiguredFeature<OreConfiguration, ?>> NETHER_CITRINE_ORE = FeatureUtils.register(
             "nether_citrine_ore",
             Feature.ORE, new OreConfiguration(NETHER_CITRINE_ORES, 9));

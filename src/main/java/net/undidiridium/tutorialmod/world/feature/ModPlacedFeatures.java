@@ -5,6 +5,7 @@ import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.data.worldgen.placement.VegetationPlacements;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
 import net.minecraft.world.level.levelgen.placement.*;
+import net.undidiridium.tutorialmod.config.TutorialModCommonConfigs;
 
 public class ModPlacedFeatures {
 
@@ -22,7 +23,9 @@ public class ModPlacedFeatures {
             InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome());
 
     public static final Holder<PlacedFeature> CITRINE_ORE_PLACED = PlacementUtils.register("citrine_ore_placed",
-            ModConfiguredFeatures.CITRINE_ORE, ModOrePlacement.commonOrePlacement(7, // VeinsPerChunk
+            ModConfiguredFeatures.CITRINE_ORE,
+            ModOrePlacement.commonOrePlacement(TutorialModCommonConfigs.CITRINE_ORE_VEINS_PER_CHUNK.get(), //
+                    // VeinsPerChunk
                     HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(-80), VerticalAnchor.aboveBottom(80))));
 
     public static final Holder<PlacedFeature> NETHER_CITRINE_ORE_PLACED = PlacementUtils.register(

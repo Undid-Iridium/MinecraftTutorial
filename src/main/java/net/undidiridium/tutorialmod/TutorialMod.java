@@ -11,12 +11,16 @@ import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.brewing.BrewingRecipeRegistry;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.undidiridium.tutorialmod.block.ModBlocks;
 import net.undidiridium.tutorialmod.block.entity.ModBlockEntities;
 import net.undidiridium.tutorialmod.block.entity.ModWoodTypes;
+import net.undidiridium.tutorialmod.config.TutorialModClientConfigs;
+import net.undidiridium.tutorialmod.config.TutorialModCommonConfigs;
 import net.undidiridium.tutorialmod.effect.ModEffects;
 import net.undidiridium.tutorialmod.enchantment.ModEnchantments;
 import net.undidiridium.tutorialmod.entity.ModEntityTypes;
@@ -55,6 +59,12 @@ public class TutorialMod {
             So: 16x16, 32x32, 48x48, etc
          */
 
+        ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, TutorialModClientConfigs.SPEC, "tutorialmod" +
+                "-client.toml");
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, TutorialModCommonConfigs.SPEC, "tutorialmod" +
+                "-common.toml");
+
+
         ModItems.register(event_bus);
         ModBlocks.register(event_bus);
         ModBlockEntities.register(event_bus);
@@ -77,6 +87,7 @@ public class TutorialMod {
         // server/client
 
         GeckoLib.initialize();
+
 
         MinecraftForge.EVENT_BUS.register(this);
     }
