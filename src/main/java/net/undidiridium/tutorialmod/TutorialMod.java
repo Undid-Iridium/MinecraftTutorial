@@ -59,11 +59,14 @@ public class TutorialMod {
             So: 16x16, 32x32, 48x48, etc
          */
 
+
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, TutorialModClientConfigs.SPEC, "tutorialmod" +
                 "-client.toml");
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, TutorialModCommonConfigs.SPEC, "tutorialmod" +
                 "-common.toml");
 
+//        float strength = TutorialModCommonConfigs.CITRINE_BLOCK_STRENGTH.get().floatValue();
+        System.out.println("Citrine Block Strength: " + TutorialModCommonConfigs.CITRINE_BLOCK_STRENGTH.get());
 
         ModItems.register(event_bus);
         ModBlocks.register(event_bus);

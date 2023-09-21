@@ -63,17 +63,18 @@ public class ModItems {
 
     //Apparently for armor effects you don't need to change all to ModArmorItem, only one, weird.
     public static final RegistryObject<Item> CITRINE_HELMET =
-            ITEMS.register("citrine_helmet", () -> new ModArmorItem(ModArmorMaterials.CITRINE, EquipmentSlot.HEAD,
+            ITEMS.register("citrine_helmet", () -> new CitrineArmorItem(ModArmorMaterials.CITRINE, EquipmentSlot.HEAD,
                     new Item.Properties().tab(ModCreativeModeTab.TUTORIAL_TAB)));
 
     public static final RegistryObject<Item> CITRINE_CHESTPLATE =
-            ITEMS.register("citrine_chestplate", () -> new ArmorItem(ModArmorMaterials.CITRINE, EquipmentSlot.CHEST,
+            ITEMS.register("citrine_chestplate", () -> new CitrineArmorItem(ModArmorMaterials.CITRINE,
+                    EquipmentSlot.CHEST,
                     new Item.Properties().tab(ModCreativeModeTab.TUTORIAL_TAB)));
     public static final RegistryObject<Item> CITRINE_LEGGING =
-            ITEMS.register("citrine_leggings", () -> new ArmorItem(ModArmorMaterials.CITRINE, EquipmentSlot.LEGS,
+            ITEMS.register("citrine_leggings", () -> new CitrineArmorItem(ModArmorMaterials.CITRINE, EquipmentSlot.LEGS,
                     new Item.Properties().tab(ModCreativeModeTab.TUTORIAL_TAB)));
     public static final RegistryObject<Item> CITRINE_BOOTS =
-            ITEMS.register("citrine_boots", () -> new ArmorItem(ModArmorMaterials.CITRINE, EquipmentSlot.FEET,
+            ITEMS.register("citrine_boots", () -> new CitrineArmorItem(ModArmorMaterials.CITRINE, EquipmentSlot.FEET,
                     new Item.Properties().tab(ModCreativeModeTab.TUTORIAL_TAB)));
 
     public static final RegistryObject<Item> MAGIC_DUST =

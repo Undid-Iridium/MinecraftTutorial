@@ -20,6 +20,7 @@ import net.undidiridium.tutorialmod.block.custom.CitrineLampBlock;
 import net.undidiridium.tutorialmod.block.custom.CucumberPlantBlock;
 import net.undidiridium.tutorialmod.block.custom.GemCuttingStationBlock;
 import net.undidiridium.tutorialmod.block.custom.SpeedyBlock;
+import net.undidiridium.tutorialmod.config.TutorialModCommonConfigs;
 import net.undidiridium.tutorialmod.item.ModCreativeModeTab;
 import net.undidiridium.tutorialmod.item.ModItems;
 import net.undidiridium.tutorialmod.sound.ModSounds;
@@ -29,16 +30,18 @@ import java.util.List;
 import java.util.function.Supplier;
 
 public class ModBlocks {
-    public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, TutorialMod.MOD_ID);
+    public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS,
+            TutorialMod.MOD_ID);
 
     public static final RegistryObject<Block> CITRINE_BLOCK = registerBlock("citrine_block",
-            () -> new Block(BlockBehaviour.Properties.of(Material.METAL).strength(9f).requiresCorrectToolForDrops()), ModCreativeModeTab.TUTORIAL_TAB);
+            () -> new Block(BlockBehaviour.Properties.of(Material.METAL).strength(TutorialModCommonConfigs.CITRINE_BLOCK_STRENGTH.get().floatValue()).requiresCorrectToolForDrops()), ModCreativeModeTab.TUTORIAL_TAB);
     public static final RegistryObject<Block> CITRINE_STAIRS = registerBlock("citrine_stairs",
             () -> new StairBlock(() -> ModBlocks.CITRINE_BLOCK.get().defaultBlockState(),
                     BlockBehaviour.Properties.of(Material.STONE).strength(5f)
                             .requiresCorrectToolForDrops().sound(SoundType.AMETHYST)), ModCreativeModeTab.TUTORIAL_TAB);
     public static final RegistryObject<Block> RAW_CITRINE_BLOCK = registerBlock("raw_citrine_block",
-            () -> new Block(BlockBehaviour.Properties.of(Material.METAL).strength(7f).requiresCorrectToolForDrops()), ModCreativeModeTab.TUTORIAL_TAB);
+            () -> new Block(BlockBehaviour.Properties.of(Material.METAL).strength(7f).requiresCorrectToolForDrops()),
+            ModCreativeModeTab.TUTORIAL_TAB);
     public static final RegistryObject<Block> CITRINE_ORE = registerBlock("citrine_ore",
             () -> new OreBlock(BlockBehaviour.Properties.of(Material.STONE).strength(5f).requiresCorrectToolForDrops(), UniformInt.of(3, 7)), ModCreativeModeTab.TUTORIAL_TAB);
     public static final RegistryObject<Block> DEEPSLATE_CITRINE_ORE = registerBlock("deepslate_citrine_ore",
@@ -65,7 +68,8 @@ public class ModBlocks {
             () -> new StoneButtonBlock(BlockBehaviour.Properties.of(Material.METAL).strength(5f).requiresCorrectToolForDrops().noCollission().sound(SoundType.WET_GRASS)), ModCreativeModeTab.TUTORIAL_TAB);
 
     public static final RegistryObject<Block> CITRINE_PRESSURE_PLATE = registerBlock("citrine_pressure_plate",
-            () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, BlockBehaviour.Properties.of(Material.METAL).strength(5f).requiresCorrectToolForDrops().sound(SoundType.BAMBOO)), ModCreativeModeTab.TUTORIAL_TAB);
+            () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING,
+                    BlockBehaviour.Properties.of(Material.METAL).strength(5f).requiresCorrectToolForDrops().sound(SoundType.BAMBOO)), ModCreativeModeTab.TUTORIAL_TAB);
 
     public static final RegistryObject<Block> EBONY_DOOR = registerBlock("ebony_door",
             () -> new DoorBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(5f).requiresCorrectToolForDrops().noOcclusion().sound(SoundType.SNOW)), ModCreativeModeTab.TUTORIAL_TAB);
@@ -83,19 +87,22 @@ public class ModBlocks {
 
     public static final RegistryObject<Block> WINTER_WINDOW = registerBlock("winter_window",
             () -> new GlassBlock(
-                    BlockBehaviour.Properties.copy(Blocks.GLASS).strength(5f).noOcclusion()), ModCreativeModeTab.TUTORIAL_TAB);
+                    BlockBehaviour.Properties.copy(Blocks.GLASS).strength(5f).noOcclusion()),
+            ModCreativeModeTab.TUTORIAL_TAB);
 
     public static final RegistryObject<Block> CITRINE_LAMP = registerBlock("citrine_lamp",
             () -> new CitrineLampBlock(
                     BlockBehaviour.Properties.of(Material.METAL).strength(2f).requiresCorrectToolForDrops().lightLevel((state) ->
-                            state.getValue(CitrineLampBlock.CLICKED) ? 15 : 0).sound(ModSounds.CITRINE_LAMP_SOUNDS)), ModCreativeModeTab.TUTORIAL_TAB);
+                            state.getValue(CitrineLampBlock.CLICKED) ? 15 : 0).sound(ModSounds.CITRINE_LAMP_SOUNDS)),
+            ModCreativeModeTab.TUTORIAL_TAB);
 
     public static final RegistryObject<Block> CUCUMBER_PLANT = registerBlockWithoutBlockItem("cucumber_plant",
             () -> new CucumberPlantBlock(
                     BlockBehaviour.Properties.copy(Blocks.WHEAT).noOcclusion()));
 
     public static final RegistryObject<Block> GEM_CUTTING_STATION = ModBlocks.registerBlock("gem_cutting_station",
-            () -> new GemCuttingStationBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).noOcclusion()), ModCreativeModeTab.TUTORIAL_TAB);
+            () -> new GemCuttingStationBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).noOcclusion()),
+            ModCreativeModeTab.TUTORIAL_TAB);
 
 
     /**
@@ -107,12 +114,16 @@ public class ModBlocks {
      * @param <T>
      * @return
      */
-    public static <T extends Block> RegistryObject<Item> registerBlockItem(final String name, final RegistryObject<T> block, final CreativeModeTab tab) {
-        return ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties().tab(tab).stacksTo(32)));
+    public static <T extends Block> RegistryObject<Item> registerBlockItem(final String name,
+                                                                           final RegistryObject<T> block,
+                                                                           final CreativeModeTab tab) {
+        return ModItems.ITEMS.register(name, () -> new BlockItem(block.get(),
+                new Item.Properties().tab(tab).stacksTo(32)));
     }
 
     /**
-     * FYI Supplier is a delegate, you can save a function to it, and then do .get() to get the result. Registering the block itself with tooltip.
+     * FYI Supplier is a delegate, you can save a function to it, and then do .get() to get the result. Registering
+     * the block itself with tooltip.
      *
      * @param name
      * @param block
@@ -120,7 +131,9 @@ public class ModBlocks {
      * @param <T>
      * @return
      */
-    public static <T extends Block> RegistryObject<T> registerBlock(final String name, final Supplier<T> block, final CreativeModeTab tab, final String tooltipKey) {
+    public static <T extends Block> RegistryObject<T> registerBlock(final String name, final Supplier<T> block,
+                                                                    final CreativeModeTab tab,
+                                                                    final String tooltipKey) {
         final RegistryObject<T> toReturn = BLOCKS.register(name, block);
         registerBlockItem(name, toReturn, tab, tooltipKey);
         return toReturn;
@@ -135,18 +148,23 @@ public class ModBlocks {
      * @param <T>
      * @return
      */
-    public static <T extends Block> RegistryObject<Item> registerBlockItem(final String name, final RegistryObject<T> block, final CreativeModeTab tab,
+    public static <T extends Block> RegistryObject<Item> registerBlockItem(final String name,
+                                                                           final RegistryObject<T> block,
+                                                                           final CreativeModeTab tab,
                                                                            final String tooltipKey) {
-        return ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties().tab(tab).stacksTo(50)) {
+        return ModItems.ITEMS.register(name, () -> new BlockItem(block.get(),
+                new Item.Properties().tab(tab).stacksTo(50)) {
             @Override
-            public void appendHoverText(final ItemStack pStack, @Nullable final Level pLevel, final List<Component> pTooltip, final TooltipFlag pFlag) {
+            public void appendHoverText(final ItemStack pStack, @Nullable final Level pLevel,
+                                        final List<Component> pTooltip, final TooltipFlag pFlag) {
                 pTooltip.add(new TranslatableComponent(tooltipKey));
             }
         });
     }
 
     /**
-     * FYI Supplier is a delegate, you can save a function to it, and then do .get() to get the result. Registering the block itself.
+     * FYI Supplier is a delegate, you can save a function to it, and then do .get() to get the result. Registering
+     * the block itself.
      *
      * @param name
      * @param block
@@ -154,21 +172,24 @@ public class ModBlocks {
      * @param <T>
      * @return
      */
-    public static <T extends Block> RegistryObject<T> registerBlock(final String name, final Supplier<T> block, final CreativeModeTab tab) {
+    public static <T extends Block> RegistryObject<T> registerBlock(final String name, final Supplier<T> block,
+                                                                    final CreativeModeTab tab) {
         final RegistryObject<T> toReturn = BLOCKS.register(name, block);
         registerBlockItem(name, toReturn, tab, "This has no defined label!");
         return toReturn;
     }
 
     /**
-     * FYI Supplier is a delegate, you can save a function to it, and then do .get() to get the result. Registering the block itself.
+     * FYI Supplier is a delegate, you can save a function to it, and then do .get() to get the result. Registering
+     * the block itself.
      *
      * @param name
      * @param block
      * @param <T>
      * @return
      */
-    public static <T extends Block> RegistryObject<T> registerBlockWithoutBlockItem(final String name, final Supplier<T> block) {
+    public static <T extends Block> RegistryObject<T> registerBlockWithoutBlockItem(final String name,
+                                                                                    final Supplier<T> block) {
         return BLOCKS.register(name, block);
     }
 
