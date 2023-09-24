@@ -34,6 +34,7 @@ import net.undidiridium.tutorialmod.screen.ModMenuTypes;
 import net.undidiridium.tutorialmod.sound.ModSounds;
 import net.undidiridium.tutorialmod.util.BetterBrewingRecipe;
 import net.undidiridium.tutorialmod.villager.ModVillagers;
+import net.undidiridium.tutorialmod.world.structure.ModStructures;
 import org.slf4j.Logger;
 import software.bernie.geckolib3.GeckoLib;
 
@@ -42,7 +43,7 @@ import software.bernie.geckolib3.GeckoLib;
 public class TutorialMod {
     public static final String MOD_ID = "tutorialmod";
     // Directly reference a slf4j logger
-    private static final Logger LOGGER = LogUtils.getLogger();
+    public static final Logger LOGGER = LogUtils.getLogger();
 
     public TutorialMod() {
         // Register the setup method for modloading
@@ -72,6 +73,7 @@ public class TutorialMod {
         ModBlocks.register(event_bus);
         ModBlockEntities.register(event_bus);
         ModMenuTypes.register(event_bus);
+        ModStructures.register(event_bus);
         ModPaintings.register(event_bus);
         ModSounds.register(event_bus);
         ModPotions.register(event_bus);
